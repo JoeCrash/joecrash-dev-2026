@@ -58,7 +58,7 @@ const Dock = () => {
     }, []);
 
     const toggleApp = (app) => {
-
+        // TODO: wire to app/window manager
     }
     return (
         <section id="dock">
