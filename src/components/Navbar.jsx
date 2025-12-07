@@ -10,16 +10,16 @@ const Navbar = () => {
                 <img src="/images/logo.svg" alt="logo"/>
                 <p className="font-bold">JoeCrash's Portfolio</p>
                 <ul>
-                    {navLinks.map(({id, name}) =>
-                        <li key={id}><p>{name}</p></li>)
-                    }
+                    {navLinks.map(
+                        ({id, name}) => <li key={id}><p>{name}</p></li>
+                    )}
                 </ul>
             </div>
             <div>
                 <ul>
-                    {navIcons.map(({id, img}) =>
-                        <img src={img} alt={`icon-${id}`}></img>)
-                    }
+                    {navIcons.map(
+                        ({id, img}) => <li key={id}><img key={`icon-${id}`} src={img} alt={`icon-${id}`}/></li>
+                    )}
                 </ul>
                 <time>
                     {dayjs().format("ddd MMM D h:mm A")}

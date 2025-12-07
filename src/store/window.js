@@ -1,0 +1,51 @@
+import { create } from "zustand";
+import {immer} from "zustand/middleware/immer";
+import {INITIAL_Z_INDEX, WINDOW_CONFIG} from "#constants/index.js";
+
+const useWindowStore = create(
+    immer((set) =>
+        ({
+            windows: WINDOW_CONFIG,
+            nextZIndex: INITIAL_Z_INDEX + 1,
+
+            openWindow: (windowKey, data = null) =>
+                set((state) => {
+                    if(!state.windows[windowKey]){
+                        console.error(`Open window ${windowKey} not found`);
+                        return;
+                    }
+                    const win = state.windows[windowKey];
+                    win.isOpen = true;
+                    win.zIndex = state.nextZIndex;
+                    win.data = data ?? win.data;
+                    state.nextZIndex ++;
+                }),
+
+            closeWindow: (windowKey, data = null) =>
+                set((state) => {
+                    if(!state.windows[windowKey]){
+                        console.error(`Close window ${windowKey} not found`);
+                        return;
+                    }
+                    const win = state.windows[windowKey];
+                    win.isOpen = false;
+                    win.zIndex = INITIAL_Z_INDEX;
+                    win.data = null;
+
+                }),
+
+            focusWindow: (windowKey, data = null) =>
+                set((state) => {
+                    if(!state.windows[windowKey]){
+                        console.error(`Focus window ${windowKey} missing.`);
+                        return;
+                    }
+                    const win = state.windows[windowKey];
+                    win.zIndex = state.nextZIndex++;
+                }),
+
+        })
+    )
+);
+
+export default useWindowStore;
