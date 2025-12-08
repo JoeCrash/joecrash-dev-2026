@@ -2,7 +2,7 @@ import React from 'react'
 import {Check, Flag} from "lucide-react";
 
 import WindowWrapper from "#hoc/WindowWrapper.jsx";
-import { WindowControls } from "#components";
+import { WindowControls } from "#components/index.js";
 import {techStack} from "#constants/index.js";
 
 let stackCount = techStack.length;

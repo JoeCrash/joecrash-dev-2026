@@ -1,9 +1,11 @@
-import React, {useLayoutEffect, useRef} from 'react'
+import React, {useLayoutEffect, useRef} from 'react';
 import gsap from "gsap";
 import {useGSAP} from "@gsap/react";
 import {Draggable} from "gsap/Draggable";
 
 import useWindowStore from "#store/window.js";
+
+gsap.registerPlugin(Draggable);
 
 const WindowWrapper = (Component, windowKey) => {
     const Wrapped = (props) => {
@@ -26,8 +28,9 @@ const WindowWrapper = (Component, windowKey) => {
             const [instance] = Draggable.create(el, {
                 onPress: () => focusWindow(windowKey)
             });
-            //destroy instance when component unmounts
-            return () => instance.kill();
+            return () => {
+                instance && instance.kill();
+            }
         }, [isOpen]);
 
         useLayoutEffect(() => {
