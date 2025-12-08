@@ -15,7 +15,11 @@ const Finder = () => {
     const openItem = (item) => {
         if(item.fileType === "pdf") return openWindow("resume");
         if(item.kind === "folder") return setActiveLocation(item);
-        if(["fig", "url"].includes(item.fileType) && item.href) return window.open(item.href, "_blank");
+        if(["fig", "url"].includes(item.fileType) && item.href) {
+            const newWindow = window.open(item.href, "_blank","noopener,noreferrer");
+            if (newWindow) newWindow.opener = null;
+            return;
+        }
 
         openWindow(`${item.fileType}${item.kind}`, item);
     };
@@ -28,7 +32,7 @@ const Finder = () => {
                     <li
                         key={item.id}
                         onClick={() => setActiveLocation(item)}
-                        className={clsx(item.id === activeLocation.id ? "active" : "not-active")}
+                        className={clsx(item.id === activeLocation?.id ? "active" : "not-active")}
                     >
                         <img src={item.icon} alt={item.name} className="w-4" />
                         <p className="text-sm font-medium truncate">
@@ -47,11 +51,11 @@ const Finder = () => {
             </div>
             <div className="bg-white flex h-full">
                 <div className="sidebar">
-                        { renderList("Favorites", Object.values(locations)) }
-                        { renderList("Work", locations.work.children) }
+                        { locations && renderList("Favorites", Object.values(locations)) }
+                        { locations?.work?.children && renderList("Work", locations.work.children) }
                 </div>
                 <ul className="content">
-                    {activeLocation?.children.map((item) => (
+                    {activeLocation?.children?.map((item) => (
                         <li key={item.id} className={item.position} onClick={() => openItem(item)}>
                             <img src={item.icon} alt={item.name} />
                             <p>{item.name}</p>
