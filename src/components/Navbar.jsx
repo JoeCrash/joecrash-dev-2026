@@ -18,7 +18,7 @@ const Navbar = () => {
             <div>
                 <ul>
                     {navIcons.map(
-                        ({id, img}) => <li key={id}><img src={img} alt={`icon-${id}`}/></li>
+                        ({id, img}) => <li key={id}><img key={`icon-${id}`} src={img} alt={`icon-${id}`}/></li>
                     )}
                 </ul>
                 <time>
