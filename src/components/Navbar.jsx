@@ -13,7 +13,7 @@ const Navbar = () => {
                 <ul>
                     {navLinks.map(
                         ({id, name, type}) => (
-                            <li key={id} onClick={() => openWindow(type)}>
+                            <li key={id} role="button" onClick={() => openWindow(type)}>
                                 <p>{name}</p>
                             </li>
                         ))
