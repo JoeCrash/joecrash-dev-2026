@@ -7,7 +7,7 @@ import {dockApps} from "#constants/index.js";
 import useWindowStore from "#store/window.js";
 
 const Dock = () => {
-    const {openWindow, closeWindow, toggleMinimizeWindow, windows } = useWindowStore();
+    const {openWindow, closeWindow, windows } = useWindowStore();
     const dockRef = useRef(null);
 
     useGSAP(() => {
@@ -68,23 +68,9 @@ const Dock = () => {
             return;
         }
 
-        //win.isOpen ? closeWindow(app.id) : openWindow(app.id);
-        // Closed → open
-        if (!win.isOpen) {
-            openWindow(app.id);
-            return;
-        }
+        win.isOpen ? closeWindow(app.id) : openWindow(app.id);
 
-        // Minimized → restore
-        if (win.isMinimized) {
-            toggleMinimizeWindow(app.id);
-            return;
-        }
-
-        // Open and not minimized → close (preserves existing toggle behavior)
-        closeWindow(app.id);
     }
-
     return (
         <section id="dock">
             <div ref={dockRef} className="dock-container">

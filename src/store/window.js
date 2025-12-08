@@ -16,7 +16,6 @@ const useWindowStore = create(
                     }
                     const win = state.windows[windowKey];
                     win.isOpen = true;
-                    win.isMinimized = false;
                     win.zIndex = state.nextZIndex;
                     win.data = data ?? win.data;
                     state.nextZIndex ++;
@@ -30,40 +29,9 @@ const useWindowStore = create(
                     }
                     const win = state.windows[windowKey];
                     win.isOpen = false;
-                    win.isMinimized = false;
-                    win.isMaximized = false;
                     win.zIndex = INITIAL_Z_INDEX;
                     win.data = null;
 
-                }),
-
-            toggleMinimizeWindow: (windowKey) =>
-                set((state) => {
-                    if(!state.windows[windowKey]){
-                        console.error(`Toggle minimize window ${windowKey} not found`);
-                        return;
-                    }
-                    const win = state.windows[windowKey];
-                    // Only minimize if it's open
-                    if (!win.isOpen) return;
-                    win.isMinimized = !win.isMinimized;
-                }),
-
-            toggleMaximizeWindow: (windowKey) =>
-                set((state) => {
-                    if(!state.windows[windowKey]){
-                        console.error(`Toggle maximize window ${windowKey} not found`);
-                        return;
-                    }
-                    const win = state.windows[windowKey];
-                    // Only maximize if it's open
-                    if (!win.isOpen) return;
-                    win.isMaximized = !win.isMaximized;
-
-                    // Bring maximized window to front
-                    if (win.isMaximized) {
-                        win.zIndex = state.nextZIndex++;
-                    }
                 }),
 
             focusWindow: (windowKey, data = null) =>
@@ -75,6 +43,7 @@ const useWindowStore = create(
                     const win = state.windows[windowKey];
                     win.zIndex = state.nextZIndex++;
                 }),
+
         })
     )
 );
