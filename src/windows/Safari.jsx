@@ -1,4 +1,3 @@
-import React from 'react'
 import {BlogPost, SafariHeader} from "#components/index.js";
 import WindowWrapper from "#hoc/WindowWrapper.jsx";
 import {blogPosts} from "#constants/index.js";

@@ -1,4 +1,3 @@
-import React from 'react'
 import {Check, Flag} from "lucide-react";
 
 import WindowWrapper from "#hoc/WindowWrapper.jsx";

@@ -1,4 +1,3 @@
-import React from 'react'
 import {ChevronLeft, ChevronRight, Copy, PanelLeft, Plus, ShieldHalf, Search, Share, Star} from "lucide-react";
 import {WindowControls} from "#components/index.js";
 const SafariHeader = () => {

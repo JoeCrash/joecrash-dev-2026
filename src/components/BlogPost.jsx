@@ -1,4 +1,3 @@
-import React from 'react'
 import {MoveRight} from "lucide-react";
 
 const BlogPost = ({date, title, image, link}) => {

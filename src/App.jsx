@@ -1,5 +1,3 @@
-import React from 'react'
-
 import {Navbar, Welcome, Dock} from "./components";
 import { Terminal, Safari } from "./windows";
 
