@@ -1,4 +1,4 @@
-import {Navbar, Welcome, Dock} from "#components";
+import {Navbar, Welcome, Dock, Home} from "#components";
 import {Terminal, Safari, Resume, Finder, TextViewer, ImageViewer, Contact} from "#windows";
 
 const App = () => {
@@ -14,6 +14,7 @@ const App = () => {
             <TextViewer />
             <ImageViewer />
             <Contact />
+            <Home />
         </main>
 
     )

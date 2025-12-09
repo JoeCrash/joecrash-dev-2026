@@ -4,5 +4,6 @@ import Dock from "#components/Dock.jsx";
 import WindowControls from "#components/WindowControls.jsx";
 import SafariHeader from "#components/SafariHeader.jsx";
 import BlogPost from "#components/BlogPost.jsx";
+import Home from "#components/Home.jsx";
 
-export { Navbar, Welcome, Dock, WindowControls, SafariHeader, BlogPost };
+export { Navbar, Welcome, Dock, WindowControls, SafariHeader, BlogPost, Home };
