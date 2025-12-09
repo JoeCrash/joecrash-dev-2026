@@ -57,7 +57,7 @@ const Finder = () => {
                 <ul className="content">
                     {activeLocation?.children?.map((item) => (
                         <li key={item.id} className={item.position} onClick={() => openItem(item)}>
-                            <img src={item.icon} alt={item.name} />
+                            <img src={item.icon} alt={item.name} className="cursor-pointer" />
                             <p>{item.name}</p>
                         </li>
                     ))}

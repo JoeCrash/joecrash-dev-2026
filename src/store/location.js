@@ -13,6 +13,14 @@ const useLocationStore = create(
                 state.activeLocation = location;
             }),
 
+        setActiveLocationByType: (type) => {
+                const location = locations[type];
+                if(!location) return;
+                set((state) => {
+                    state.activeLocation = location;
+                })
+            },
+
         resetActiveLocation: () =>
             set((state) => {
                 state.activeLocation = DEFAULT_LOCATION;
