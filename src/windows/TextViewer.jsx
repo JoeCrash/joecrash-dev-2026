@@ -2,7 +2,7 @@ import WindowWrapper from "#hoc/WindowWrapper.jsx";
 import { WindowControls } from "#components/index.js";
 import useWindowStore from "#store/window.js";
 
-const Text = () => {
+const TextViewer = () => {
     const { windows } = useWindowStore();
     const data = windows?.txtfile?.data;
 
@@ -35,5 +35,5 @@ const Text = () => {
     );
 };
 
-const TextWindow = WindowWrapper(Text, "txtfile");
+const TextWindow = WindowWrapper(TextViewer, "txtfile");
 export default TextWindow;

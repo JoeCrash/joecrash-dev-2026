@@ -18,7 +18,7 @@ const Navbar = () => {
                             <li key={id} role="button" onClick={
                                 () => {
                                     openWindow(type);
-                                    if(locationType) setActiveLocationByType(locationType);
+                                    locationType ? setActiveLocationByType(locationType) : null;
                                 }
                             }>
                                 <p>{name}</p>
