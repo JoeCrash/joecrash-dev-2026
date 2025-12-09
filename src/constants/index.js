@@ -3,6 +3,7 @@ const navLinks = [
         id: 1,
         name: "Projects",
         type: "finder",
+        location: "work",
     },
     {
         id: 3,
@@ -38,7 +39,7 @@ const navIcons = [
 const dockApps = [
     {
         id: "finder",
-        name: "Portfolio", // was "Finder"
+        name: "Projects", // was "Finder"
         icon: "finder.png",
         canOpen: true,
     },
