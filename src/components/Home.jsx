@@ -1,4 +1,3 @@
-import WindowWrapper from "#hoc/WindowWrapper.jsx";
 import {locations} from "#constants/index.js";
 import clsx from "clsx";
 import gsap from "gsap";
@@ -10,6 +9,7 @@ import useLocationStore from "#store/location.js";
 gsap.registerPlugin(Draggable);
 
 const projects = locations?.work?.children ?? [];
+
 const Home = () => {
     const { setActiveLocation } = useLocationStore();
     const { openWindow } = useWindowStore();
@@ -20,7 +20,6 @@ const Home = () => {
     useGSAP(() => {
         Draggable.create(".folder", {})
     })
-
 
     return (
         <section id="home">
