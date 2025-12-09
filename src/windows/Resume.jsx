@@ -1,4 +1,3 @@
-import React from 'react'
 import WindowWrapper from "#hoc/WindowWrapper.jsx";
 import {WindowControls} from "#components/index.js";
 import {Download} from "lucide-react";
@@ -11,9 +10,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.mjs',
     import.meta.url,
 ).toString();
+
 const Resume = () => {
-
-
     return (
         <>
             <div id="window-header">

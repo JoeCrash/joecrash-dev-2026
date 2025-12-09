@@ -6,4 +6,4 @@ import TextViewer from '#windows/TextViewer.jsx';
 import ImageViewer from '#windows/ImageViewer.jsx';
 import Contact from '#windows/Contact.jsx';
 
-export { Terminal, Safari, Resume, Finder, TextViewer, ImageViewer, Contact };
+export { Terminal, Safari, Resume, Finder, TextViewer, ImageViewer, Contact};
