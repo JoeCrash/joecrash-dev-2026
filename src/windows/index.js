@@ -4,5 +4,6 @@ import Resume from '#windows/Resume';
 import Finder from '#windows/Finder';
 import TextViewer from '#windows/TextViewer.jsx';
 import ImageViewer from '#windows/ImageViewer.jsx';
+import Contact from '#windows/Contact.jsx';
 
-export { Terminal, Safari, Resume, Finder, TextViewer, ImageViewer };
+export { Terminal, Safari, Resume, Finder, TextViewer, ImageViewer, Contact };
