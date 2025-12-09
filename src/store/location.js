@@ -14,16 +14,11 @@ const useLocationStore = create(
             }),
 
         setActiveLocationByType: (type) => {
-                for (const key in locations) {
-                    if (!Object.prototype.hasOwnProperty.call(locations, key)) continue;
-                    const location = locations[key];
-                    if (location.type === type) {
-                        set((state) => {
-                            state.activeLocation = location;
-                        })
-                        break;
-                    }
-                }
+                const location = locations[type];
+                if(!location) return;
+                set((state) => {
+                    state.activeLocation = location;
+                })
             },
 
         resetActiveLocation: () =>

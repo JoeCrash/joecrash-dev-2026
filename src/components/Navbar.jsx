@@ -14,11 +14,11 @@ const Navbar = () => {
                 <p className="font-bold">JoeCrash's Portfolio</p>
                 <ul>
                     {navLinks.map(
-                        ({id, name, type, location = false}) => (
+                        ({id, name, type, locationType = false}) => (
                             <li key={id} role="button" onClick={
                                 () => {
                                     openWindow(type);
-                                    if(location) setActiveLocationByType(location);
+                                    if(locationType) setActiveLocationByType(locationType);
                                 }
                             }>
                                 <p>{name}</p>

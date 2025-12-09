@@ -3,7 +3,7 @@ const navLinks = [
         id: 1,
         name: "Projects",
         type: "finder",
-        location: "work",
+        locationType: "work",
     },
     {
         id: 3,
