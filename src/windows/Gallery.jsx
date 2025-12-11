@@ -31,7 +31,7 @@ const Gallery = () => {
         return "col-span-1 row-span-1"; // square/default
     }; */
 
-    const renderListB = (name, items) => (
+    const renderList = (name, items) => (
         <div>
             <h3>{name}</h3>
             <ul>
@@ -59,7 +59,7 @@ const Gallery = () => {
             </div>
             <div className="bg-white flex mx-auto">
                 <div className="sidebar">
-                    { galleries.library && renderListB("Albums", Object.values(galleries)) }
+                    {galleries && renderList("Albums", Object.values(galleries)) }
                 </div>
                 <div className="gallery">
                     <ul>
