@@ -49,12 +49,13 @@ const dockApps = [
         icon: "safari.png",
         canOpen: true,
     },
+    /*
     {
         id: "photos",
         name: "Gallery", // was "Photos"
         icon: "photos.png",
         canOpen: true,
-    },
+    },*/
     {
         id: "contact",
         name: "Contact", // or "Get in touch"
@@ -71,7 +72,7 @@ const dockApps = [
         id: "trash",
         name: "Archive", // was "Trash"
         icon: "trash.png",
-        canOpen: false,
+        canOpen: true,
     },
 ];
 
@@ -160,49 +161,49 @@ const socials = [
 
 const photosLinks = [
     {
-        id: 1,
+        id: 10,
         icon: "/icons/gicon1.svg",
         title: "Library",
     },
     {
-        id: 2,
+        id: 12,
         icon: "/icons/gicon2.svg",
         title: "Memories",
     },
     {
-        id: 3,
+        id: 13,
         icon: "/icons/file.svg",
         title: "Places",
     },
     {
-        id: 4,
+        id: 14,
         icon: "/icons/gicon4.svg",
         title: "People",
     },
     {
-        id: 5,
+        id: 15,
         icon: "/icons/gicon5.svg",
         title: "Favorites",
     },
 ];
-
 const gallery = [
-    {
-        id: 1,
-        img: "/images/gal1.png",
-    },
-    {
-        id: 2,
-        img: "/images/gal2.png",
-    },
-    {
-        id: 3,
-        img: "/images/gal3.png",
-    },
-    {
-        id: 4,
-        img: "/images/gal4.png",
-    },
+    {id: 1, img: "/images/gal1.png",},
+    {id: 2, img: "/images/gal2.png",},
+    {id: 3, img: "/images/gal3.png",},
+    {id: 4, img: "/images/gal4.png",},
+];
+
+const galleryA = [
+    {id: 1, img: "/images/gal1.png",},
+    {id: 2, img: "/images/gal2.png",},
+    {id: 3, img: "/images/gal3.png",},
+    {id: 4, img: "/images/gal4.png",},
+];
+const galleryB = [
+    {id: 7, img: "/images/gal3.png",},
+    {id: 5, img: "/images/gal1.png",},
+    {id: 8, img: "/images/gal4.png",},
+    {id: 6, img: "/images/gal2.png",},
 ];
 
 export {
@@ -214,6 +215,8 @@ export {
     socials,
     photosLinks,
     gallery,
+    galleryA,
+    galleryB,
 };
 
 const WORK_LOCATION = {
@@ -489,6 +492,29 @@ export const locations = {
     about: ABOUT_LOCATION,
     resume: RESUME_LOCATION,
     trash: TRASH_LOCATION,
+};
+
+const LIBRARY_GALLERY = {
+    id: 14,
+    type: "library",
+    name: "Library",
+    icon: "/icons/gicon1.svg",
+    kind: "folder",
+    children: galleryA,
+};
+const MEMORY_GALLERY = {
+    id: 15,
+    type: "memories",
+    name: "Memories",
+    icon: "/icons/gicon2.svg",
+    kind: "folder",
+    children: galleryB,
+};
+
+
+export const galleries = {
+    library: LIBRARY_GALLERY,
+    memories: MEMORY_GALLERY
 };
 
 const INITIAL_Z_INDEX = 1000;
