@@ -18,18 +18,18 @@ const Gallery = () => {
         openWindow("imgfile", { name: `Photo ${id}`, imageUrl: img });
     };
 
-    const onImgLoad = (id, e) => {
+    /* const onImgLoad = (id, e) => {
         const { naturalWidth: w, naturalHeight: h } = e.target;
         const type = w === h ? "square" : w > h ? "landscape" : "portrait";
         setSpans((prev) => (prev[id] === type ? prev : ({ ...prev, [id]: type })));
-    };
+    }; */
 
-    const spanClass = (id) => {
+    /* const spanClass = (id) => {
         const type = spans[id];
         if (type === "landscape") return "col-span-2 row-span-1";
         if (type === "portrait") return "col-span-1 row-span-2";
         return "col-span-1 row-span-1"; // square/default
-    };
+    }; */
 
     const renderListB = (name, items) => (
         <div>

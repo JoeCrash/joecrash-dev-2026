@@ -14,7 +14,7 @@ const useGalleryStore = create(
             }),
 
         setActiveGalleryByType: (type) => {
-                const gallery = gallery[type];
+                const gallery = galleries[type];
                 if(!gallery) return;
                 set((state) => {
                     state.activeGallery = gallery;
