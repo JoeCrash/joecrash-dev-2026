@@ -153,7 +153,7 @@ const socials = [
         text: "Github",
         icon: "/icons/github.svg",
         bg: "#f4656b",
-        link: "https://github.com/JavaScript-Mastery-Pro",
+        link: "https://github.com/joecrash",
     },
     {
         id: 2,
@@ -300,7 +300,7 @@ const WORK_LOCATION = {
                     name: "Demo.mp4",
                     icon: "/images/plain.png",
                     kind: "file",
-                    fileType: "fig",
+                    fileType: "video",
                     href: "https://google.com",
                     position: "top-60 right-20",
                 },

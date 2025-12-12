@@ -8,4 +8,4 @@ const VideoViewer = () => {
     )
 }
 const VideoViewerWindow = WindowWrapper(VideoViewer, "videofile");
-export default VideoViewer;
+export default VideoViewerWindow;

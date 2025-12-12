@@ -12,7 +12,7 @@ const ImageViewer = () => {
     return (
         <>
             <div id="window-header">
-                {name ? <h2>{name}</h2> : <h2>"Image"</h2>}
+                {name ? <h2>{name}</h2> : <h2>Image</h2>}
                 <WindowControls target="imgfile" />
             </div>
             <div className="bg-white p-6 space-y-4">
