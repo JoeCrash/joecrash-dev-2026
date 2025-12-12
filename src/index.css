@@ -90,12 +90,27 @@ body {
         }
 
         .dock-icon {
-            @apply cursor-pointer;
-
-            img {
-                @apply size-20 object-cover object-center opacity-80;
-            }
+            @apply cursor-pointer relative;
         }
+
+        .dock-img {
+            @apply size-20 object-cover object-center opacity-80;
+            @apply [--h:0] [--a:0] [will-change:filter];
+
+            /* contours transparency because drop-shadow follows alpha */
+            @apply [filter:drop-shadow(0_0_6px_hsla(var(--h),100%,65%,var(--a)))_drop-shadow(0_0_2px_hsla(var(--h),100%,65%,var(--a)))];
+        }
+
+        .dock-led {
+            @apply absolute inset-0 rounded-3xl pointer-events-none opacity-0;
+            @apply [padding:2px];                  /* border thickness */
+            @apply [background:conic-gradient(from_0deg,red,orange,yellow,green,cyan,blue,violet,red)];
+            @apply [filter:drop-shadow(0_0_3px_hsla(var(--h),95%,60%,0.85))];
+            @apply [mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)];
+            @apply [mask-composite:exclude];
+            @apply [--h:0];
+        }
+
     }
 
     #window-controls {
