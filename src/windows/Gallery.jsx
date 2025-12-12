@@ -54,8 +54,8 @@ const Gallery = () => {
     return (
         <>
             <div id="window-header">
-                <WindowControls target="photos"/>
                 <h2>Gallery</h2>
+                <WindowControls target="photos"/>
             </div>
             <div className="bg-white flex mx-auto">
                 <div className="sidebar">

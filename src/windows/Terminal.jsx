@@ -9,12 +9,12 @@ const Terminal = () => {
     return (
         <>
             <div id="window-header">
-                <WindowControls target="terminal" />
                 <h2>Tech Stack</h2>
+                <WindowControls target="terminal" />
             </div>
             <div className="techstack">
                 <p>
-                    <span className="font-bold text-green-600">joe@joecrash-dev ~ % </span>
+                    <span className="font-bold text-green-600">guest@joecrash-dev ~ % </span>
                     show tech stack
                 </p>
                 <div className="label">
@@ -42,8 +42,8 @@ const Terminal = () => {
                     <p>
                         <Check size={20}/> (100%) {stackCount} of {stackCount} stacks loaded.
                     </p>
-                    <p className="text-black">
-                        <Flag size={15} fill="black"/>
+                    <p>
+                        <Flag size={15}/>
                         Render time: 4ms
                     </p>
                 </div>

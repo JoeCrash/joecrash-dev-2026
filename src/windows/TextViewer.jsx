@@ -4,7 +4,7 @@ import useWindowStore from "#store/window.js";
 
 const TextViewer = () => {
     const { windows } = useWindowStore();
-    const data = windows?.txtfile?.data;
+    const data = windows?.videofile?.data;
 
     if (!data) return null;
 
@@ -13,8 +13,9 @@ const TextViewer = () => {
     return (
         <>
             <div id="window-header">
-                <WindowControls target="txtfile" />
+                {console.log("text viewer render")}
                 {name ? <h2>{name}</h2> : null}
+                <WindowControls target="txtfile" />
             </div>
             <div className="bg-white p-6 space-y-4">
                 {image ? (

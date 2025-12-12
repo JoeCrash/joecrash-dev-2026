@@ -40,38 +40,49 @@ const dockApps = [
     {
         id: "finder",
         name: "Projects", // was "Finder"
-        icon: "finder.png",
+        icon: "dock-apps/file-manager.svg",
         canOpen: true,
     },
     {
         id: "safari",
         name: "Articles", // was "Safari"
-        icon: "safari.png",
+        icon: "dock-apps/safari.svg",
         canOpen: true,
     },
-    /*
     {
         id: "photos",
         name: "Gallery", // was "Photos"
-        icon: "photos.png",
+        icon: "dock-apps/photos.svg",
         canOpen: true,
-    },*/
+    },
     {
         id: "contact",
         name: "Contact", // or "Get in touch"
-        icon: "contact.png",
+        icon: "dock-apps/addressbook.svg",
         canOpen: true,
+    },
+    {
+        id: "postman",
+        name: "Postman", // was "Terminal"
+        icon: "dock-apps/postman.svg",
+        canOpen: false,
+    },
+    {
+        id: "vscode",
+        name: "VS Code", // was "Terminal"
+        icon: "dock-apps/visual-studio-code.svg",
+        canOpen: false,
     },
     {
         id: "terminal",
         name: "Skills", // was "Terminal"
-        icon: "terminal.png",
+        icon: "dock-apps/terminal.svg",
         canOpen: true,
     },
     {
         id: "trash",
         name: "Archive", // was "Trash"
-        icon: "trash.png",
+        icon: "dock-apps/user-trash-full-dark.svg",
         canOpen: true,
     },
 ];
@@ -103,28 +114,36 @@ const blogPosts = [
 
 const techStack = [
     {
-        category: "Frontend",
-        items: ["React.js", "Next.js", "TypeScript"],
+        category: "Languages",
+        items: ["Javascript", "PHP", "Python"],
     },
     {
-        category: "Mobile",
-        items: ["React Native", "Expo"],
+        category: "Frontend",
+        items: ["React.js", "Next.js", "TypeScript", "HTML5"],
     },
     {
         category: "Styling",
-        items: ["Tailwind CSS", "Sass", "CSS"],
+        items: ["Tailwind CSS", "CSS3"],
     },
     {
         category: "Backend",
-        items: ["Node.js", "Express", "NestJS", "Hono"],
+        items: ["Node.js", "Laravel", "FastAPI", "HAProxy"],
     },
     {
         category: "Database",
-        items: ["MongoDB", "PostgreSQL"],
+        items: ["MySQL", "PostgreSQL", "NoSQL", "FlatFile"],
     },
     {
         category: "Dev Tools",
-        items: ["Git", "GitHub", "Docker"],
+        items: ["Git", "GitHub", "Postman", "Docker", "CodeRabbit", "Fiddler"],
+    },
+    {
+        category: "AWS",
+        items: ["EC2", "S3", "ACM", "WAF", "IAM", "CloudFlare"],
+    },
+    {
+        category: "IDE",
+        items: ["VSCode", "WebStorm", "Vim", "PyCharm"],
     },
 ];
 
@@ -270,6 +289,15 @@ const WORK_LOCATION = {
                 {
                     id: 5,
                     name: "Design.fig",
+                    icon: "/images/plain.png",
+                    kind: "file",
+                    fileType: "fig",
+                    href: "https://google.com",
+                    position: "top-60 right-20",
+                },
+                {
+                    id: 6,
+                    name: "Demo.mp4",
                     icon: "/images/plain.png",
                     kind: "file",
                     fileType: "fig",
@@ -528,6 +556,7 @@ const WINDOW_CONFIG = {
     terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
     txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
     imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+    videofile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 };
 
 export { INITIAL_Z_INDEX, WINDOW_CONFIG };
