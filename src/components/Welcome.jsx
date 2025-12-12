@@ -77,10 +77,10 @@ const Welcome = () => {
     return (
         <section id="welcome">
             <p ref={subtitleRef}>{
-                renderText("Hey, I'm JoeCrash, welcome to my","text-3xl font-georama", 100)
+                renderText("Hey, I'm JoeCrash, welcome to my", "text-3xl font-georama", 200)
             }</p>
             <h1 ref={titleRef} className="mt-7">{
-                renderText("Portfolio","text-9xl italic font-georama", 500)
+                renderText("Portfolio", "opacity-35 text-gray-400 text-shadow-lg text-shadow-yellow-900 text-9xl italic font-georama", 600)
             }</h1>
             <div className="small-screen">
                 <p>This portfolio is designed for desktop/tablet screens only.</p>

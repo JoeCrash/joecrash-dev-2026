@@ -17,15 +17,17 @@ const Dock = () => {
         if(!dock) return () => {};
 
         const icons = dock.querySelectorAll(".dock-icon");
+        const totalIcons = icons.length;
 
-        const animateIcons = (mouseX) => {
+        const animateIcons = (mouseX, iconIndex) => {
             const { left } = dock.getBoundingClientRect();
 
-            icons.forEach((icon) => {
+            icons.forEach((icon, index) => {
+
                 const {left: iconLeft, width} = icon.getBoundingClientRect();
                 const center = iconLeft - left + width / 2;
                 const distance = Math.abs(mouseX - center);
-                const intensity = Math.exp(-(distance ** 2.5) / 10000);
+                const intensity = Math.exp(-(distance ** 2.1) / 10000);
 
                 gsap.to(icon, {
                     scale: 1 + 0.25 * intensity,
@@ -33,13 +35,19 @@ const Dock = () => {
                     duration: 0.2,
                     ease: "power1.out",
                 });
+
             });
         };
 
         const handleMouseMove = (e) => {
-            const { left } = dock.getBoundingClientRect();
+            const { left, top, width } = dock.getBoundingClientRect();
             const mouseX = e.clientX - left;
-            animateIcons(mouseX);
+
+            //Added this calc to determine which icon the mouse is actually over.
+            const indexRange = width / totalIcons;
+            const iconIndex = Math.ceil(mouseX / indexRange) - 1;
+
+            animateIcons(mouseX, iconIndex);
         };
 
         const resetIcons = () => icons.forEach((icon) =>

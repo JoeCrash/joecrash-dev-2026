@@ -4,18 +4,18 @@ import {Terminal, Safari, Resume, Finder, TextViewer, ImageViewer, Contact, Gall
 const App = () => {
     return (
         <main>
-            <Navbar />
-            <Welcome />
-            <Dock />
-            <Terminal />
-            <Safari />
-            <Resume />
-            <Finder />
-            <TextViewer />
-            <ImageViewer />
-            <Contact />
-            <Gallery />
-            <Home />
+            <Navbar/>
+            <Welcome/>
+            <Dock/>
+            <Terminal/>
+            <Safari/>
+            <Resume/>
+            <Finder/>
+            <TextViewer/>
+            <ImageViewer/>
+            <Contact/>
+            <Gallery/>
+            <Home/>
         </main>
 
     )
