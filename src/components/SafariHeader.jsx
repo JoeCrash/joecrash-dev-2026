@@ -3,7 +3,6 @@ import {WindowControls} from "#components/index.js";
 const SafariHeader = () => {
     return (
         <>
-            <WindowControls target="safari" />
             <PanelLeft className="ml-10 icon" />
             <div className="flex items-center gap-1 ml-5">
                 <ChevronLeft className="icon" />
@@ -25,6 +24,7 @@ const SafariHeader = () => {
                     <Copy className="icon" />
                 </div>
             </div>
+            <WindowControls target="safari" />
         </>
     )
 }

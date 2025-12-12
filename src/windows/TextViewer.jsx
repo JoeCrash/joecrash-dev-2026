@@ -13,8 +13,8 @@ const TextViewer = () => {
     return (
         <>
             <div id="window-header">
-                <WindowControls target="txtfile" />
                 {name ? <h2>{name}</h2> : null}
+                <WindowControls target="txtfile" />
             </div>
             <div className="bg-white p-6 space-y-4">
                 {image ? (

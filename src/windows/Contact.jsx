@@ -6,10 +6,10 @@ const Contact = () => {
     return (
         <>
             <div id="window-header">
-                <WindowControls target="contact" />
                 <h2>Contact</h2>
+                <WindowControls target="contact" />
             </div>
-            <div className="p-5 space-y-5">
+            <div className="p-5 space-y-5 bg-white">
                 <img src="/images/joecrash-01.png" alt="joecrash" className="w-40 rounded-xl"/>
                 <h3>Let's connect</h3>
                 <p>Got an idea? A bug to squash? Let's chat!</p>

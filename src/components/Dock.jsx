@@ -14,24 +14,41 @@ const Dock = () => {
 
     useGSAP(() => {
         const dock = dockRef.current;
-        if(!dock) return () => {};
+        if (!dock) return () => {};
 
         const icons = dock.querySelectorAll(".dock-icon");
+        const imgs  = dock.querySelectorAll(".dock-img");
+        const totalIcons = icons.length;
 
         const animateIcons = (mouseX) => {
             const { left } = dock.getBoundingClientRect();
 
-            icons.forEach((icon) => {
-                const {left: iconLeft, width} = icon.getBoundingClientRect();
+            icons.forEach((icon, index) => {
+                const { left: iconLeft, width } = icon.getBoundingClientRect();
                 const center = iconLeft - left + width / 2;
-                const distance = Math.abs(mouseX - center);
-                const intensity = Math.exp(-(distance ** 2.5) / 10000);
 
+                const distance = Math.abs(mouseX - center);
+                const intensity = Math.exp(-(distance ** 2.1) / 10000);
+
+                // wavey icons animation
                 gsap.to(icon, {
                     scale: 1 + 0.25 * intensity,
                     y: -15 * intensity,
-                    duration: 0.2,
-                    ease: "power1.out",
+                    duration: 0.18,
+                    ease: "power2.out",
+                    overwrite: "auto",
+                });
+
+                // rainbow hue setter, based on mouse pos
+                const hue = (mouseX * 0.9 + index * 45) % 360;
+                imgs[index]?.style.setProperty("--h", hue);
+
+                // glow brightness
+                gsap.to(imgs[index], {
+                    "--a": Math.min(1, intensity * 0.9),
+                    duration: 0.18,
+                    ease: "power2.out",
+                    overwrite: "auto",
                 });
             });
         };
@@ -42,14 +59,26 @@ const Dock = () => {
             animateIcons(mouseX);
         };
 
-        const resetIcons = () => icons.forEach((icon) =>
-            gsap.to(icon, {
+        const resetIcons = () => {
+            // hard stop any in-flight tweens so reset always completes
+            gsap.killTweensOf(icons);
+            gsap.killTweensOf(imgs);
+
+            gsap.to(icons, {
                 scale: 1,
                 y: 0,
-                duration: 0.3,
-                ease: "power1.out"
-            })
-        );
+                duration: 0.22,
+                ease: "power2.out",
+                overwrite: "auto",
+            });
+
+            gsap.to(imgs, {
+                "--a": 0,
+                duration: 0.18,
+                ease: "power2.out",
+                overwrite: "auto",
+            });
+        };
 
         dock.addEventListener("mousemove", handleMouseMove);
         dock.addEventListener("mouseleave", resetIcons);
@@ -57,9 +86,9 @@ const Dock = () => {
         return () => {
             dock.removeEventListener("mousemove", handleMouseMove);
             dock.removeEventListener("mouseleave", resetIcons);
-        }
-
+        };
     }, []);
+
 
     const toggleApp = (app) => {
         if(!app.canOpen) return;
@@ -94,11 +123,12 @@ const Dock = () => {
                             disabled={!canOpen}
                             onClick={() => toggleApp({id, canOpen})}
                         >
+                            <span className="dock-led" aria-hidden />
                             <img
                                 src={`/images/${icon}`}
                                 alt={name}
                                 loading="lazy"
-                                className={canOpen ? "" : "opacity-60"}
+                                className={`dock-img ${canOpen ? "" : "opacity-60"}`}
                             />
                         </button>
                     </div>

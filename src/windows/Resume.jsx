@@ -15,9 +15,10 @@ const Resume = () => {
     return (
         <>
             <div id="window-header">
-                <WindowControls target="resume" />
-                <h2>Resume.pdf</h2>
                 <a href="files/resume.pdf" target="_blank" rel="noopener noreferrer" title="Download resume" download className="cursor-pointer"><Download /></a>
+                <h2>Resume.pdf</h2>
+                <WindowControls target="resume" />
+
             </div>
             <Document file="files/resume.pdf">
                 <Page pageNumber={1} renderTextLayer renderAnnotationLayer />

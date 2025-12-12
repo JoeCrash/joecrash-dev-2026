@@ -37,7 +37,7 @@ body {
     }
 
     nav {
-        @apply flex justify-between items-center bg-white/50 backdrop-blur-3xl p-2 px-5 select-none;
+        @apply flex justify-between items-center bg-white/35 opacity-80 backdrop-blur-xs p-2 px-5 select-none;
 
         div {
             @apply flex items-center max-sm:w-full max-sm:justify-center gap-5;
@@ -82,7 +82,7 @@ body {
         @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-50 select-none max-sm:hidden;
 
         .dock-container {
-            @apply bg-white/20 backdrop-blur-md justify-between rounded-2xl p-1.5 flex items-end gap-1.5;
+            @apply bg-white/20 backdrop-blur-md justify-between rounded-2xl p-1.5 ps-3 flex items-end gap-2;
         }
 
         .tooltip {
@@ -90,12 +90,27 @@ body {
         }
 
         .dock-icon {
-            @apply size-14 3xl:size-20 cursor-pointer;
-
-            img {
-                @apply object-cover object-center;
-            }
+            @apply cursor-pointer relative;
         }
+
+        .dock-img {
+            @apply size-20 object-cover object-center opacity-80;
+            @apply [--h:0] [--a:0] [will-change:filter];
+
+            /* contours transparency because drop-shadow follows alpha */
+            @apply [filter:drop-shadow(0_0_6px_hsla(var(--h),100%,65%,var(--a)))_drop-shadow(0_0_2px_hsla(var(--h),100%,65%,var(--a)))];
+        }
+
+        .dock-led {
+            @apply absolute inset-0 rounded-3xl pointer-events-none opacity-0;
+            @apply [padding:2px];                  /* border thickness */
+            @apply [background:conic-gradient(from_0deg,red,orange,yellow,green,cyan,blue,violet,red)];
+            @apply [filter:drop-shadow(0_0_3px_hsla(var(--h),95%,60%,0.85))];
+            @apply [mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)];
+            @apply [mask-composite:exclude];
+            @apply [--h:0];
+        }
+
     }
 
     #window-controls {
@@ -115,14 +130,17 @@ body {
     }
 
     #window-header {
-        @apply flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-400;
+        @apply flex items-center justify-between px-4 py-3 bg-gray-50/85 border-b border-gray-200 select-none text-sm text-gray-500;
+        h2 {
+            @apply font-bold text-sm text-center w-full;
+        }
     }
 
     #safari {
-        @apply w-4xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+        @apply w-4xl absolute top-40 left-2/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
 
         .search {
-            @apply flex items-center gap-3 w-2/3 bg-white border border-gray-300 rounded-lg px-3 py-2;
+            @apply flex items-center gap-3 w-2/3 bg-white border border-gray-300 rounded-lg px-3 py-1;
 
             input {
                 @apply placeholder:text-gray-400;
@@ -130,7 +148,7 @@ body {
         }
 
         .blog {
-            @apply bg-white p-10 max-w-3xl mx-auto;
+            @apply bg-white p-10 max-w-full mx-auto;
 
             h2 {
                 @apply text-xl font-bold text-pink-600 mb-10;
@@ -163,14 +181,10 @@ body {
     }
 
     #terminal {
-        @apply w-xl absolute top-32 left-1/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
-
-        h2 {
-            @apply font-bold text-sm text-center w-full;
-        }
+        @apply w-xl absolute top-32 left-1/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
 
         .techstack {
-            @apply text-sm font-roboto p-5;
+            @apply text-sm font-roboto p-5 bg-gray-900 text-white;
 
             .label {
                 @apply flex items-center ms-10 mt-7;
@@ -201,7 +215,7 @@ body {
                     @apply flex items-center;
 
                     svg {
-                        @apply w-5 me-5;
+                        @apply w-5 me-5 ;
                     }
                 }
             }
@@ -209,11 +223,7 @@ body {
     }
 
     #contact {
-        @apply max-w-2xl absolute top-60 left-5/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
-
-        h2 {
-            @apply font-bold text-sm text-center w-full;
-        }
+        @apply max-w-2xl absolute top-60 left-5/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
 
         h3 {
             @apply text-xl font-semibold;
@@ -237,7 +247,7 @@ body {
     }
 
     #photos {
-        @apply max-w-3xl absolute top-96 left-1/2 -translate-y-1/2 bg-white shadow-2xl drop-shadow-2xl rounded-lg overflow-hidden;
+        @apply max-w-3xl absolute top-96 left-1/2 -translate-y-1/2 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
 
         .sidebar {
             @apply w-48 bg-gray-50 border-r border-gray-200 flex flex-col p-5 space-y-3;
@@ -279,17 +289,12 @@ body {
     }
 
     #resume {
-        @apply w-fit h-fit absolute top-16 left-7/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+        @apply w-fit h-fit absolute top-16 left-7/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
 
-        #window-header {
-            h2 {
-                @apply font-bold text-sm text-center flex-1;
-            }
-        }
     }
 
     #finder {
-        @apply absolute w-3xl left-40 top-20 shadow-2xl drop-shadow-2xl overflow-hidden rounded-xl;
+        @apply absolute w-3xl left-40 top-20 shadow-2xl drop-shadow-2xl overflow-hidden rounded-3xl;
 
         .sidebar {
             @apply w-48 bg-gray-50 border-r border-gray-200 flex flex-col p-5 space-y-3;
@@ -333,15 +338,12 @@ body {
     }
 
     #txtfile {
-        @apply w-md absolute top-36 right-32 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+        @apply w-md absolute top-36 right-32 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
 
-        h2 {
-            @apply font-bold text-sm text-center w-full;
-        }
     }
 
     #imgfile {
-        @apply w-xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+        @apply w-xl absolute top-40 left-2/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
 
         #window-header {
             p {
