@@ -323,12 +323,12 @@ body {
     }
 
     #txtfile {
-        @apply w-md absolute top-36 right-32 bg-white shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
+        @apply w-md absolute top-36 right-32 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
 
     }
 
     #imgfile {
-        @apply w-xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
+        @apply w-xl absolute top-40 left-2/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
 
         #window-header {
             p {

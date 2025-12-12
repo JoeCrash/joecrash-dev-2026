@@ -14,7 +14,7 @@ const App = () => {
             <TextViewer />
             <ImageViewer />
             <Contact />
-            {/* <Gallery /> */}
+            <Gallery />
             <Home />
         </main>
 
