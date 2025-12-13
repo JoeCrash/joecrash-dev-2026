@@ -137,7 +137,7 @@ body {
     }
 
     #safari {
-        @apply w-4xl absolute top-40 left-2/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
+        @apply w-4xl absolute top-20 left-2/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
 
         .search {
             @apply flex items-center gap-3 w-2/3 bg-white border border-gray-300 rounded-lg px-3 py-1;
@@ -223,7 +223,7 @@ body {
     }
 
     #contact {
-        @apply max-w-2xl absolute top-60 left-5/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
+        @apply max-w-2xl absolute top-35 left-7/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
 
         h3 {
             @apply text-xl font-semibold;

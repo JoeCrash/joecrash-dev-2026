@@ -20,19 +20,19 @@ const navLinks = [
 const navIcons = [
     {
         id: 1,
-        img: "/icons/wifi.svg",
+        img: "/icons/nav/wifi.svg",
     },
     {
         id: 2,
-        img: "/icons/search.svg",
+        img: "/icons/nav/search.svg",
     },
     {
         id: 3,
-        img: "/icons/user.svg",
+        img: "/icons/nav/user.svg",
     },
     {
         id: 4,
-        img: "/icons/mode.svg",
+        img: "/icons/nav/mode.svg",
     },
 ];
 
@@ -151,28 +151,28 @@ const socials = [
     {
         id: 1,
         text: "Github",
-        icon: "/icons/github.svg",
+        icon: "/icons/contact/github.svg",
         bg: "#f4656b",
         link: "https://github.com/joecrash",
     },
     {
         id: 2,
         text: "Platform",
-        icon: "/icons/atom.svg",
+        icon: "/icons/contact/atom.svg",
         bg: "#4bcb63",
         link: "https://joecrash.dev/",
     },
     {
         id: 3,
         text: "Twitter/X",
-        icon: "/icons/twitter.svg",
+        icon: "/icons/contact/twitter.svg",
         bg: "#ff866b",
         link: "https://x.com/joecrash",
     },
     {
         id: 4,
         text: "LinkedIn",
-        icon: "/icons/linkedin.svg",
+        icon: "/icons/contact/linkedin.svg",
         bg: "#05b6f6",
         link: "https://www.linkedin.com/in/juan-medina-full-stack-developer/",
     },
@@ -181,27 +181,27 @@ const socials = [
 const photosLinks = [
     {
         id: 10,
-        icon: "/icons/gicon1.svg",
+        icon: "/icons/shared/gicon1.svg",
         title: "Library",
     },
     {
         id: 12,
-        icon: "/icons/gicon2.svg",
+        icon: "/icons/shared/gicon2.svg",
         title: "Memories",
     },
     {
         id: 13,
-        icon: "/icons/file.svg",
+        icon: "/icons/shared/file.svg",
         title: "Places",
     },
     {
         id: 14,
-        icon: "/icons/gicon4.svg",
+        icon: "/icons/shared/gicon4.svg",
         title: "People",
     },
     {
         id: 15,
-        icon: "/icons/gicon5.svg",
+        icon: "/icons/shared/gicon5.svg",
         title: "Favorites",
     },
 ];
@@ -242,7 +242,7 @@ const WORK_LOCATION = {
     id: 1,
     type: "work",
     name: "Work",
-    icon: "/icons/work.svg",
+    icon: "/icons/shared/work.svg",
     kind: "folder",
     children: [
         // ▶ Project 1
@@ -302,7 +302,7 @@ const WORK_LOCATION = {
                     kind: "file",
                     fileType: "video",
                     href: "https://google.com",
-                    position: "top-60 right-20",
+                    position: "top-40 right-50",
                 },
             ],
         },
@@ -419,7 +419,7 @@ const ABOUT_LOCATION = {
     id: 2,
     type: "about",
     name: "About me",
-    icon: "/icons/info.svg",
+    icon: "/icons/shared/info.svg",
     kind: "folder",
     children: [
         {
@@ -472,7 +472,7 @@ const RESUME_LOCATION = {
     id: 3,
     type: "resume",
     name: "Resume",
-    icon: "/icons/file.svg",
+    icon: "/icons/shared/file.svg",
     kind: "folder",
     children: [
         {
@@ -491,7 +491,7 @@ const TRASH_LOCATION = {
     id: 4,
     type: "trash",
     name: "Trash",
-    icon: "/icons/trash.svg",
+    icon: "/icons/shared/trash.svg",
     kind: "folder",
     children: [
         {
@@ -526,7 +526,7 @@ const LIBRARY_GALLERY = {
     id: 14,
     type: "library",
     name: "Library",
-    icon: "/icons/gicon1.svg",
+    icon: "/icons/shared/gicon1.svg",
     kind: "folder",
     children: galleryA,
 };
@@ -534,7 +534,7 @@ const MEMORY_GALLERY = {
     id: 15,
     type: "memories",
     name: "Memories",
-    icon: "/icons/gicon2.svg",
+    icon: "/icons/shared/gicon2.svg",
     kind: "folder",
     children: galleryB,
 };

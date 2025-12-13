@@ -3,7 +3,7 @@ import gsap from "gsap";
 import {useGSAP} from "@gsap/react";
 
 const FONT_WEIGHTS = {
-    subtitle: {min:100, max:400, default:100},
+    subtitle: {min:100, max:400, default:200},
     title: {min:400, max:900, default:600},
 }
 
@@ -33,21 +33,25 @@ const setupTextHover = (container, type) => {
         });
     };
 
+    let rafId = 0;
+    let lastMouseX = 0;
     const handleMouseMove = (e) => {
-        const {left} = container.getBoundingClientRect();
-        const mouseX = e.clientX - left;
-
-        letters.forEach((letter) => {
-            const {left: l, width: w} = letter.getBoundingClientRect();
-            const distance = Math.abs(mouseX - (l - left + w / 2));
-            const intensity = Math.exp(-(distance ** 2) / 10000);
-
-            animateLetter(letter, min + (max - min) * intensity);
+        const { left } = container.getBoundingClientRect();
+        lastMouseX = e.clientX - left;
+        if (rafId) return;
+        rafId = requestAnimationFrame(() => {
+            rafId = 0;
+            letters.forEach((letter) => {
+                const { left: l, width: w } = letter.getBoundingClientRect();
+                const distance = Math.abs(lastMouseX - (l - left + w / 2));
+                const intensity = Math.exp(-(distance ** 2) / 10000);
+                animateLetter(letter, min + (max - min) * intensity);
+            });
         });
-    }
+    };
 
     const handleMouseLeave = () => {
-        letters.forEach((letter) => animateLetter(letter, base, 0.3));
+        letters.forEach((letter) => animateLetter(letter, base, 0.4));
     }
 
     container.addEventListener("mousemove", handleMouseMove);
