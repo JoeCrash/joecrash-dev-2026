@@ -125,7 +125,7 @@ const Dock = () => {
                         >
                             <span className="dock-led" aria-hidden />
                             <img
-                                src={`/images/${icon}`}
+                                src={`${icon}`}
                                 alt={name}
                                 loading="lazy"
                                 className={`dock-img ${canOpen ? "" : "opacity-60"}`}
