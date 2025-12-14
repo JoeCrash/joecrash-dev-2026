@@ -1,88 +1,116 @@
 const navLinks = [
     {
-        id: 1,
-        name: "Projects",
+        id: 1, name: "Projects",
         type: "finder",
         locationType: "work",
     },
     {
-        id: 3,
-        name: "Contact",
+        id: 3, name: "Contact",
         type: "contact",
     },
     {
-        id: 4,
-        name: "Resume",
+        id: 4, name: "Resume",
         type: "resume",
     },
 ];
 
+const PATHS = {
+    contact: "/icons/contact/",
+    folders: "/icons/shared/folders/",
+    mimetypes: "/icons/mimetypes/",
+    nav: "/icons/nav/",
+    shared: "/icons/shared/",
+    apps: "/icons/apps/",
+};
+const APP_ICONS = {
+    contact: `${PATHS.apps}contact.svg`,
+    docker: `${PATHS.apps}docker.svg`,
+    figma: `${PATHS.apps}figma.svg`,
+    finder: `${PATHS.apps}finder.svg`,
+    photos: `${PATHS.apps}photos.svg`,
+    postman: `${PATHS.apps}postman.svg`,
+    safari: `${PATHS.apps}safari.svg`,
+    teams: `${PATHS.apps}teams.svg`,
+    terminal: `${PATHS.apps}terminal.svg`,
+    trash: `${PATHS.apps}trash.svg`,
+    vscode: `${PATHS.apps}vscode.svg`,
+};
+const EXT_ICONS = {
+    css: `${PATHS.mimetypes}css.svg`,
+    default: `${PATHS.mimetypes}default.svg`,
+    dockerfile: `${PATHS.mimetypes}dockerfile.svg`,
+    jpg: `${PATHS.mimetypes}jpg.svg`,
+    js: `${PATHS.mimetypes}js.svg`,
+    md: `${PATHS.mimetypes}md.svg`,
+    pdf: `${PATHS.mimetypes}pdf.svg`,
+    php: `${PATHS.mimetypes}php.svg`,
+    png: `${PATHS.mimetypes}png.svg`,
+    psd: `${PATHS.mimetypes}psd.svg`,
+    py: `${PATHS.mimetypes}py.svg`,
+    readme: `${PATHS.mimetypes}readme.svg`,
+    rtf: `${PATHS.mimetypes}rtf.svg`,
+    rust: `${PATHS.mimetypes}rust.svg`,
+    tsx: `${PATHS.mimetypes}tsx.svg`,
+    txt: `${PATHS.mimetypes}txt.svg`,
+    video: `${PATHS.mimetypes}video.svg`,
+    vscode: `${PATHS.mimetypes}vscode.svg`,
+};
+export { PATHS, APP_ICONS, EXT_ICONS };
+
 const navIcons = [
-    {
-        id: 1,
-        img: "/icons/nav/wifi.svg",
-    },
-    {
-        id: 2,
-        img: "/icons/nav/search.svg",
-    },
-    {
-        id: 3,
-        img: "/icons/nav/user.svg",
-    },
-    {
-        id: 4,
-        img: "/icons/nav/mode.svg",
-    },
+    { id: 1, img: `${PATHS.nav}wifi.svg`, },
+    { id: 2, img: `${PATHS.nav}search.svg`, },
+    { id: 3, img: `${PATHS.nav}user.svg`, },
+    { id: 4, img: `${PATHS.nav}mode.svg`, },
 ];
 
 const dockApps = [
     {
         id: "finder",
         name: "Projects", // was "Finder"
-        icon: "dock-apps/file-manager.svg",
+        icon: APP_ICONS.finder,
         canOpen: true,
     },
     {
         id: "safari",
         name: "Articles", // was "Safari"
-        icon: "dock-apps/safari.svg",
+        icon: APP_ICONS.safari,
         canOpen: true,
     },
     {
         id: "photos",
         name: "Gallery", // was "Photos"
-        icon: "dock-apps/photos.svg",
+        icon: APP_ICONS.photos,
         canOpen: true,
     },
     {
         id: "contact",
         name: "Contact", // or "Get in touch"
-        icon: "dock-apps/addressbook.svg",
+        icon: APP_ICONS.contact,
         canOpen: true,
     },
     {
         id: "postman",
         name: "Postman", // was "Terminal"
-        icon: "dock-apps/postman.svg",
+        icon: APP_ICONS.postman,
         canOpen: false,
     },
     {
         id: "vscode",
         name: "VS Code", // was "Terminal"
-        icon: "dock-apps/visual-studio-code.svg",
+        icon: APP_ICONS.vscode,
         canOpen: false,
     },
     {
         id: "terminal",
         name: "Skills", // was "Terminal"
-        icon: "dock-apps/terminal.svg",
+        icon: APP_ICONS.terminal,
         canOpen: true,
     },
     {
         id: "trash",
         name: "Archive", // was "Trash"
-        icon: "dock-apps/user-trash-full-dark.svg",
+        icon: APP_ICONS.trash,
         canOpen: true,
     },
 ];
@@ -151,65 +179,31 @@ const socials = [
     {
         id: 1,
         text: "Github",
-        icon: "/icons/contact/github.svg",
+        icon: `${PATHS.contact}github.svg`,
         bg: "#f4656b",
         link: "https://github.com/joecrash",
     },
     {
         id: 2,
         text: "Platform",
-        icon: "/icons/contact/atom.svg",
+        icon: `${PATHS.contact}atom.svg`,
         bg: "#4bcb63",
         link: "https://joecrash.dev/",
     },
     {
         id: 3,
         text: "Twitter/X",
-        icon: "/icons/contact/twitter.svg",
+        icon: `${PATHS.contact}twitter.svg`,
         bg: "#ff866b",
         link: "https://x.com/joecrash",
     },
     {
         id: 4,
         text: "LinkedIn",
-        icon: "/icons/contact/linkedin.svg",
+        icon: `${PATHS.contact}linkedin.svg`,
         bg: "#05b6f6",
         link: "https://www.linkedin.com/in/juan-medina-full-stack-developer/",
     },
-];
-
-const photosLinks = [
-    {
-        id: 10,
-        icon: "/icons/shared/gicon1.svg",
-        title: "Library",
-    },
-    {
-        id: 12,
-        icon: "/icons/shared/gicon2.svg",
-        title: "Memories",
-    },
-    {
-        id: 13,
-        icon: "/icons/shared/file.svg",
-        title: "Places",
-    },
-    {
-        id: 14,
-        icon: "/icons/shared/gicon4.svg",
-        title: "People",
-    },
-    {
-        id: 15,
-        icon: "/icons/shared/gicon5.svg",
-        title: "Favorites",
-    },
-];
-const gallery = [
-    {id: 1, img: "/images/gal1.png",},
-    {id: 2, img: "/images/gal2.png",},
-    {id: 3, img: "/images/gal3.png",},
-    {id: 4, img: "/images/gal4.png",},
 ];
 
 const galleryA = [
@@ -232,8 +226,6 @@ export {
     blogPosts,
     techStack,
     socials,
-    photosLinks,
-    gallery,
     galleryA,
     galleryB,
 };
@@ -242,14 +234,14 @@ const WORK_LOCATION = {
     id: 1,
     type: "work",
     name: "Work",
-    icon: "/icons/shared/work.svg",
+    icon: `${PATHS.shared}work.svg`,
     kind: "folder",
     children: [
         // ▶ Project 1
         {
             id: 5,
             name: "Nike Ecommerce Website Application",
-            icon: "/images/folder.png",
+            icon: `${PATHS.folders}blue.svg`,
             kind: "folder",
             position: "top-10 left-5", // icon position inside Finder
             windowPosition: "top-[5vh] left-5", // optional: Finder window position
@@ -257,7 +249,7 @@ const WORK_LOCATION = {
                 {
                     id: 1,
                     name: "Nike Project.txt",
-                    icon: "/images/txt.png",
+                    icon: EXT_ICONS.txt,
                     kind: "file",
                     fileType: "txt",
                     position: "top-5 left-10",
@@ -271,7 +263,7 @@ const WORK_LOCATION = {
                 {
                     id: 2,
                     name: "nike.com",
-                    icon: "/images/safari.png",
+                    icon: APP_ICONS.safari,
                     kind: "file",
                     fileType: "url",
                     href: "https://youtu.be/fZdTYswuZjU?si=Awjl-pIst9e09_UU",
@@ -280,7 +272,7 @@ const WORK_LOCATION = {
                 {
                     id: 4,
                     name: "nike.png",
-                    icon: "/images/image.png",
+                    icon: EXT_ICONS.png,
                     kind: "file",
                     fileType: "img",
                     position: "top-52 right-80",
@@ -289,7 +281,7 @@ const WORK_LOCATION = {
                 {
                     id: 5,
                     name: "Design.fig",
-                    icon: "/images/plain.png",
+                    icon: APP_ICONS.figma,
                     kind: "file",
                     fileType: "fig",
                     href: "https://google.com",
@@ -298,7 +290,7 @@ const WORK_LOCATION = {
                 {
                     id: 6,
                     name: "Demo.mp4",
-                    icon: "/images/plain.png",
+                    icon: EXT_ICONS.video,
                     kind: "file",
                     fileType: "video",
                     href: "https://google.com",
@@ -311,7 +303,7 @@ const WORK_LOCATION = {
         {
             id: 6,
             name: "AI Resume Analyzer",
-            icon: "/images/folder.png",
+            icon: `${PATHS.folders}green.svg`,
             kind: "folder",
             position: "top-52 right-80",
             windowPosition: "top-[20vh] left-7",
@@ -319,7 +311,7 @@ const WORK_LOCATION = {
                 {
                     id: 1,
                     name: "AI Resume Analyzer Project.txt",
-                    icon: "/images/txt.png",
+                    icon: EXT_ICONS.txt,
                     kind: "file",
                     fileType: "txt",
                     position: "top-5 right-10",
@@ -333,7 +325,7 @@ const WORK_LOCATION = {
                 {
                     id: 2,
                     name: "ai-resume-analyzer.com",
-                    icon: "/images/safari.png",
+                    icon: APP_ICONS.safari,
                     kind: "file",
                     fileType: "url",
                     href: "https://youtu.be/iYOz165wGkQ?si=R1hs8Legl200m0Cl",
@@ -342,7 +334,7 @@ const WORK_LOCATION = {
                 {
                     id: 4,
                     name: "ai-resume-analyzer.png",
-                    icon: "/images/image.png",
+                    icon: EXT_ICONS.png,
                     kind: "file",
                     fileType: "img",
                     position: "top-52 left-80",
@@ -351,7 +343,7 @@ const WORK_LOCATION = {
                 {
                     id: 5,
                     name: "Design.fig",
-                    icon: "/images/plain.png",
+                    icon: APP_ICONS.figma,
                     kind: "file",
                     fileType: "fig",
                     href: "https://google.com",
@@ -364,7 +356,7 @@ const WORK_LOCATION = {
         {
             id: 7,
             name: "Food Delivery App",
-            icon: "/images/folder.png",
+            icon: `${PATHS.folders}orange.svg`,
             kind: "folder",
             position: "top-10 left-80",
             windowPosition: "top-[33vh] left-7",
@@ -372,7 +364,7 @@ const WORK_LOCATION = {
                 {
                     id: 1,
                     name: "Food Delivery App Project.txt",
-                    icon: "/images/txt.png",
+                    icon: EXT_ICONS.txt,
                     kind: "file",
                     fileType: "txt",
                     position: "top-5 left-10",
@@ -386,7 +378,7 @@ const WORK_LOCATION = {
                 {
                     id: 2,
                     name: "food-delivery-app.com",
-                    icon: "/images/safari.png",
+                    icon: APP_ICONS.safari,
                     kind: "file",
                     fileType: "url",
                     href: "https://youtu.be/LKrX390fJMw?si=cExkuVhf2DTV9G2-",
@@ -395,7 +387,7 @@ const WORK_LOCATION = {
                 {
                     id: 4,
                     name: "food-delivery-app.png",
-                    icon: "/images/image.png",
+                    icon: EXT_ICONS.png,
                     kind: "file",
                     fileType: "img",
                     position: "top-52 right-80",
@@ -404,7 +396,7 @@ const WORK_LOCATION = {
                 {
                     id: 5,
                     name: "Design.fig",
-                    icon: "/images/plain.png",
+                    icon: APP_ICONS.figma,
                     kind: "file",
                     fileType: "fig",
                     href: "https://google.com",
@@ -414,18 +406,17 @@ const WORK_LOCATION = {
         },
     ],
 };
-
 const ABOUT_LOCATION = {
     id: 2,
     type: "about",
     name: "About me",
-    icon: "/icons/shared/info.svg",
+    icon: `${PATHS.shared}info.svg`,
     kind: "folder",
     children: [
         {
             id: 1,
             name: "me.png",
-            icon: "/images/image.png",
+            icon: EXT_ICONS.png,
             kind: "file",
             fileType: "img",
             position: "top-10 left-5",
@@ -434,7 +425,7 @@ const ABOUT_LOCATION = {
         {
             id: 2,
             name: "casual-me.png",
-            icon: "/images/image.png",
+            icon: EXT_ICONS.png,
             kind: "file",
             fileType: "img",
             position: "top-28 right-72",
@@ -443,7 +434,7 @@ const ABOUT_LOCATION = {
         {
             id: 3,
             name: "conference-me.png",
-            icon: "/images/image.png",
+            icon: EXT_ICONS.png,
             kind: "file",
             fileType: "img",
             position: "top-52 left-80",
@@ -452,7 +443,7 @@ const ABOUT_LOCATION = {
         {
             id: 4,
             name: "about-me.txt",
-            icon: "/images/txt.png",
+            icon: EXT_ICONS.txt,
             kind: "file",
             fileType: "txt",
             position: "top-60 left-5",
@@ -467,18 +458,17 @@ const ABOUT_LOCATION = {
         },
     ],
 };
-
 const RESUME_LOCATION = {
     id: 3,
     type: "resume",
     name: "Resume",
-    icon: "/icons/shared/file.svg",
+    icon: `${PATHS.shared}file.svg`,
     kind: "folder",
     children: [
         {
             id: 1,
             name: "Resume.pdf",
-            icon: "/images/pdf.png",
+            icon: EXT_ICONS.pdf,
             kind: "file",
             fileType: "pdf",
             // you can add `href` if you want to open a hosted resume
@@ -486,18 +476,17 @@ const RESUME_LOCATION = {
         },
     ],
 };
-
 const TRASH_LOCATION = {
     id: 4,
     type: "trash",
     name: "Trash",
-    icon: "/icons/shared/trash.svg",
+    icon: `${PATHS.shared}trash.svg`,
     kind: "folder",
     children: [
         {
             id: 1,
             name: "trash1.png",
-            icon: "/images/image.png",
+            icon: EXT_ICONS.png,
             kind: "file",
             fileType: "img",
             position: "top-10 left-10",
@@ -506,7 +495,7 @@ const TRASH_LOCATION = {
         {
             id: 2,
             name: "trash2.png",
-            icon: "/images/image.png",
+            icon: EXT_ICONS.png,
             kind: "file",
             fileType: "img",
             position: "top-40 left-80",
@@ -526,7 +515,7 @@ const LIBRARY_GALLERY = {
     id: 14,
     type: "library",
     name: "Library",
-    icon: "/icons/shared/gicon1.svg",
+    icon: `${PATHS.shared}gicon1.svg`,
     kind: "folder",
     children: galleryA,
 };
@@ -534,11 +523,10 @@ const MEMORY_GALLERY = {
     id: 15,
     type: "memories",
     name: "Memories",
-    icon: "/icons/shared/gicon2.svg",
+    icon: `${PATHS.shared}gicon2.svg`,
     kind: "folder",
     children: galleryB,
 };
-
 
 export const galleries = {
     library: LIBRARY_GALLERY,
@@ -546,7 +534,6 @@ export const galleries = {
 };
 
 const INITIAL_Z_INDEX = 1000;
-
 const WINDOW_CONFIG = {
     finder: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
     contact: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
