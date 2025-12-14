@@ -1,5 +1,3 @@
-
-
 const navLinks = [
     {
         id: 1, name: "Projects",
@@ -56,7 +54,8 @@ const EXT_ICONS = {
     txt: `${PATHS.mimetypes}txt.svg`,
     video: `${PATHS.mimetypes}video.svg`,
     vscode: `${PATHS.mimetypes}vscode.svg`,
-}
+};
+export { PATHS, APP_ICONS, EXT_ICONS };
 
 const navIcons = [
     { id: 1, img: `${PATHS.nav}wifi.svg`, },

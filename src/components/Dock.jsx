@@ -93,19 +93,20 @@ const Dock = () => {
     const toggleApp = (app) => {
         if(!app.canOpen) return;
 
-        if(app.id === "trash") {
+        let windowId = app.id;
+        if(windowId === "trash") {
             setActiveLocationByType("trash");
-            app.id = "finder";
+            windowId = "finder";
         }
 
-        const win = windows[app.id];
+        const win = windows[windowId];
 
         if(!win) {
-            console.error(`Window ${app.id} not found`);
+            console.error(`Window ${windowId} not found`);
             return;
         }
 
-        win.isOpen ? closeWindow(app.id) : openWindow(app.id);
+        win.isOpen ? closeWindow(windowId) : openWindow(windowId);
 
     }
     return (
@@ -125,7 +126,7 @@ const Dock = () => {
                         >
                             <span className="dock-led" aria-hidden />
                             <img
-                                src={`${icon}`}
+                                src={icon}
                                 alt={name}
                                 loading="lazy"
                                 className={`dock-img ${canOpen ? "" : "opacity-60"}`}
