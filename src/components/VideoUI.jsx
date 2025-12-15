@@ -7,7 +7,7 @@ const fmt = (t = 0) => {
     return h > 0 ? `${pad(h)}:${pad(m)}:${pad(s)}` : `${pad(m)}:${pad(s)}`;
 };
 
-export default function VideoUi({
+export default function VideoUI({
                                     isPlaying,
                                     currentTime,
                                     duration,
@@ -22,7 +22,7 @@ export default function VideoUi({
         <div id="video-controls">
             <div className="controls">
                 <div className="volume-slider">
-                    <img src="/icons/video/volume.svg" alt="" className="w-4 m-1.5 inline-block" />
+                    <img src="/icons/video/volume.svg" alt="Volume" className="w-4 m-1.5 inline-block" />
                     <input
                         className="w-full h-10"
                         type="range"
@@ -30,24 +30,24 @@ export default function VideoUi({
                         max="100"
                         value={Math.round(volume * 100)}
                         onInput={(e) => onVolume(Number(e.target.value) / 100)}
+                        aria-label="Volume"
                     />
                 </div>
 
                 <div className="playnav">
-                    <button onClick={onRewind}>
+                    <button onClick={onRewind} aria-label="Rewind">
                         <img src="/icons/video/rewind.svg" alt="" className="w-10 inline-block" />
                     </button>
 
-                    <button onClick={onTogglePlay}>
+                    <button onClick={onTogglePlay} aria-label={isPlaying ? "Pause" : "Play"}>
                         <img
                             src={isPlaying ? "/icons/video/pause.svg" : "/icons/video/play.svg"}
-                            alt=""
+                            alt={isPlaying ? "Pause" : "Play"}
                             className="w-14 inline-block"
                         />
                     </button>
-
-                    <button onClick={onForward}>
-                        <img src="/icons/video/fast-forward.svg" alt="" className="w-10 inline-block" />
+                    <button onClick={onForward} aria-label="Fast Forward">
+                        <img src="/icons/video/fast-forward.svg" alt="Fast forward" className="w-10 inline-block" />
                     </button>
                 </div>
 
@@ -71,10 +71,11 @@ export default function VideoUi({
                     <input
                         type="range"
                         min="0"
-                        max={Math.max(duration || 0, 0)}
+                        max={duration || 0}
                         step="0.01"
                         value={Math.min(currentTime, duration || 0)}
-                        onChange={(e) => onSeek(Number(e.target.value))}
+                        onInput={(e) => onSeek(Number(e.target.value))}
+                        aria-label="Video timeline"
                     />
                 </div>
 

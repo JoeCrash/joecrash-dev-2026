@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import WindowWrapper from "#hoc/WindowWrapper.jsx";
+import VideoUI from "#components/VideoUI.jsx";
 import { WindowControls } from "#components/index.js";
 import useWindowStore from "#store/window.js";
-import VideoUi from "#components/VideoUI.jsx";
 
 const VideoViewer = () => {
     const { windows } = useWindowStore();
@@ -17,17 +17,14 @@ const VideoViewer = () => {
     const clamp01 = (n) => Math.max(0, Math.min(1, n));
     const [volume, setVolume] = useState(() => {
         const saved = Number(localStorage.getItem(VOLUME_KEY));
-        return Number.isFinite(saved) ? clamp01(saved) : 1;
+        return Number.isFinite(saved) ? clamp01(saved) : .5;
     });
-
-    useEffect(() => {
-        localStorage.setItem(VOLUME_KEY, String(volume));
-    }, [volume]);
 
     useEffect(() => {
         const v = videoRef.current;
         if (!v) return;
         v.volume = clamp01(volume);
+        localStorage.setItem(VOLUME_KEY, String(volume));
     }, [data?.video, volume]);
 
     useEffect(() => {
@@ -125,7 +122,7 @@ const VideoViewer = () => {
 
             <div className="">
                 {video && !ytEmbed ? (
-                    <VideoUi
+                    <VideoUI
                         isPlaying={isPlaying}
                         currentTime={currentTime}
                         duration={duration}

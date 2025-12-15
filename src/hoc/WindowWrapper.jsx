@@ -27,7 +27,7 @@ const WindowWrapper = (Component, windowKey) => {
             const header = el.querySelector("#window-header"); // scoped lookup
             const [instance] = Draggable.create(el, {
                 trigger: header || el,
-                onPress: () => focusWindow(windowKey),
+                //onPress: () => focusWindow(windowKey),
             });
             return () => {
                 instance && instance.kill();
