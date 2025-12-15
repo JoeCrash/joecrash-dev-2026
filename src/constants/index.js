@@ -148,7 +148,7 @@ const techStack = [
     },
     {
         category: "Frontend",
-        items: ["React.js", "Next.js", "TypeScript", "HTML5", "Bootstrap", "JQuery"],
+        items: ["React.js", "Next.js", "TypeScript", "HTML5", "Bootstrap", "jQuery"],
     },
     {
         category: "Styling",
@@ -156,7 +156,7 @@ const techStack = [
     },
     {
         category: "Backend",
-        items: ["Node.js", "Express.js", "PHP (Legacy)", "REST API's"],
+        items: ["Node.js", "Express.js", "PHP (Legacy)", "REST APIs"],
     },
     {
         category: "DevOps",
