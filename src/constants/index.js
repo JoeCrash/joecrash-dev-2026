@@ -148,7 +148,7 @@ const techStack = [
     },
     {
         category: "Frontend",
-        items: ["React.js", "Next.js", "TypeScript", "HTML5", "Bootstrap", "jQuery"],
+        items: ["Vite.js", "React.js", "Next.js", "TypeScript", "HTML5", "Bootstrap", "jQuery"],
     },
     {
         category: "Styling",
