@@ -24,9 +24,10 @@ const WindowWrapper = (Component, windowKey) => {
         useGSAP(() => {
             const el = ref.current;
             if (!el || !isOpen) return;
-
+            const header = el.querySelector("#window-header"); // scoped lookup
             const [instance] = Draggable.create(el, {
-                onPress: () => focusWindow(windowKey)
+                trigger: header || el,
+                //onPress: () => focusWindow(windowKey),
             });
             return () => {
                 instance && instance.kill();
@@ -40,7 +41,13 @@ const WindowWrapper = (Component, windowKey) => {
             el.style.display = isOpen ? "block" : "none";
         }, [isOpen]);
 
-        return (<section id={windowKey} ref={ref} style={{zIndex}} className="absolute">
+        return (<section
+            id={windowKey}
+            ref={ref}
+            style={{ zIndex }}
+            className="absolute"
+            onPointerDownCapture={() => focusWindow(windowKey)}
+        >
             <Component {...props} />
         </section>);
     };
