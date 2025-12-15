@@ -82,7 +82,7 @@ body {
         @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-50 select-none max-sm:hidden;
 
         .dock-container {
-            @apply bg-white/20 backdrop-blur-md justify-between rounded-2xl p-1.5 ps-3 flex items-end gap-2;
+            @apply bg-white/20 backdrop-blur-sm justify-between rounded-3xl p-3 flex items-end gap-2;
         }
 
         .tooltip {
@@ -128,6 +128,72 @@ body {
             @apply size-3.5 rounded-full bg-[#2acb42];
         }
     }
+
+    #video-controls {
+        @apply w-full max-w-3xl mx-auto select-none;
+        @apply bg-black/35 backdrop-blur-3xl font-bold text-white/90;
+        @apply px-4 py-2;
+        @apply border border-white/10 shadow-lg;
+        @apply flex flex-col gap-1;
+    }
+
+    /* Row 1 */
+    #video-controls .controls {
+        @apply grid grid-cols-3 items-center gap-2;
+    }
+    #video-controls .volume-slider {
+        @apply flex items-center justify-start gap-2;
+    }
+    #video-controls .playnav {
+        @apply flex items-center justify-center gap-3;
+    }
+    #video-controls .sidebar {
+        @apply flex items-center justify-end gap-3;
+    }
+    #video-controls button {
+        @apply p-1.5 rounded-lg hover:bg-white/10 active:scale-95 transition;
+    }
+    /* If your SVGs are already white, delete this line */
+    #video-controls img {
+        @apply invert opacity-90;
+    }
+    /* Row 2 */
+    #video-controls .timeline {
+        @apply grid grid-cols-6 items-center gap-3;
+    }
+    #video-controls .start-time {
+        @apply col-span-1 text-sm font-roboto tabular-nums text-white/70;
+    }
+    #video-controls .duration {
+        @apply col-span-1 text-sm font-roboto tabular-nums text-white/70 text-right;
+    }
+    #video-controls .scrub {
+        @apply col-span-4;
+    }
+    /* Scrubber (timeline) range styling */
+    #video-controls input[type="range"] {
+        @apply w-full appearance-none bg-transparent;
+    }
+    #video-controls input[type="range"]::-webkit-slider-runnable-track {
+        @apply h-1 rounded-full bg-white/20;
+    }
+    #video-controls input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        @apply size-3 rounded-full bg-white shadow;
+        @apply -mt-1; /* centers thumb on 4px track */
+    }
+    #video-controls input[type="range"]::-moz-range-track {
+        @apply h-1 rounded-full bg-white/20;
+    }
+    #video-controls input[type="range"]::-moz-range-thumb {
+        @apply size-3 rounded-full bg-white shadow border-0;
+    }
+    /* Make the volume slider a bit shorter like the screenshot */
+    #video-controls .volume-slider input[type="range"] {
+        @apply max-w-28;
+    }
+
+
 
     #window-header {
         @apply flex items-center justify-between px-4 py-3 bg-gray-50/85 border-b border-gray-200 select-none text-sm text-gray-500;
@@ -338,12 +404,16 @@ body {
     }
 
     #txtfile {
-        @apply w-md absolute top-36 right-32 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
+        @apply w-md absolute top-25 right-30 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
 
     }
 
+    #videofile {
+        @apply w-lg absolute top-15 right-40 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
+    }
+
     #imgfile {
-        @apply w-xl absolute top-40 left-2/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
+        @apply w-xl absolute top-20 left-2/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
 
         #window-header {
             p {

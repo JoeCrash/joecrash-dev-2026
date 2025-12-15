@@ -18,9 +18,10 @@ const PATHS = {
     contact: "/icons/contact/",
     folders: "/icons/shared/folders/",
     mimetypes: "/icons/mimetypes/",
-    nav: "/icons/nav/",
+    ui_nav: "/icons/nav/",
     shared: "/icons/shared/",
     apps: "/icons/apps/",
+    ui_video: "/icons/video/",
 };
 const APP_ICONS = {
     contact: `${PATHS.apps}contact.svg`,
@@ -58,10 +59,10 @@ const EXT_ICONS = {
 export { PATHS, APP_ICONS, EXT_ICONS };
 
 const navIcons = [
-    { id: 1, img: `${PATHS.nav}wifi.svg`, },
-    { id: 2, img: `${PATHS.nav}search.svg`, },
-    { id: 3, img: `${PATHS.nav}user.svg`, },
-    { id: 4, img: `${PATHS.nav}mode.svg`, },
+    { id: 1, img: `${PATHS.ui_nav}wifi.svg`, },
+    { id: 2, img: `${PATHS.ui_nav}search.svg`, },
+    { id: 3, img: `${PATHS.ui_nav}user.svg`, },
+    { id: 4, img: `${PATHS.ui_nav}mode.svg`, },
 ];
 
 const dockApps = [
@@ -293,7 +294,8 @@ const WORK_LOCATION = {
                     icon: EXT_ICONS.video,
                     kind: "file",
                     fileType: "video",
-                    href: "https://google.com",
+                    video: "/videos/demo.mp4",
+                    // ytEmbed: "https://www.youtube.com/embed/W0XznQwdXRY?si=x0w-VUW_TpiAp5ng",
                     position: "top-40 right-50",
                 },
             ],
@@ -503,7 +505,6 @@ const TRASH_LOCATION = {
         },
     ],
 };
-
 export const locations = {
     work: WORK_LOCATION,
     about: ABOUT_LOCATION,
@@ -527,7 +528,6 @@ const MEMORY_GALLERY = {
     kind: "folder",
     children: galleryB,
 };
-
 export const galleries = {
     library: LIBRARY_GALLERY,
     memories: MEMORY_GALLERY
