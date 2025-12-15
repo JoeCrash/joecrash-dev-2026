@@ -51,10 +51,10 @@ const VideoViewer = () => {
             {event:"volumechange", func:onVol}
         ];
 
-        listeners.map(({event, func}) => v.addEventListener(event, func));
+        listeners.forEach(({ event, func }) => v.addEventListener(event, func));
 
         return () => {
-            listeners.map(({event, func}) => v.removeEventListener(event, func));
+            listeners.forEach(({ event, func }) => v.removeEventListener(event, func));
         };
 
     }, [data?.video]); // rebind if the src changes
