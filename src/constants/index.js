@@ -172,7 +172,7 @@ const techStack = [
     },
     {
         category: "AWS",
-        items: ["EC2", "S3", "ACM", "WAF", "IAM", "CloudFlare"],
+        items: ["EC2", "S3", "ACM", "WAF", "IAM", "CloudFront"],
     }
 ];
 
