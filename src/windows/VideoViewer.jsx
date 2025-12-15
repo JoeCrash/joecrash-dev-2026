@@ -66,7 +66,7 @@ const VideoViewer = () => {
     const togglePlay = () => {
         const v = videoRef.current;
         if (!v) return;
-        if (v.paused) v.play();
+        if (v.paused) v.play().catch(() => {/* autoplay blocked or other error */});
         else v.pause();
     };
 

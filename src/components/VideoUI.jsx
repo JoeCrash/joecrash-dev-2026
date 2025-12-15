@@ -52,13 +52,13 @@ export default function VideoUI({
                 </div>
 
                 <div className="sidebar">
-                    <button>
+                    <button aria-label="Display frame" disabled>
                         <img src="/icons/video/display-frame.svg" alt="" className="w-4" />
                     </button>
-                    <button>
+                    <button aria-label="Share" disabled>
                         <img src="/icons/video/share.svg" alt="" className="w-4" />
                     </button>
-                    <button>
+                    <button aria-label="Sidebar" disabled>
                         <img src="/icons/video/sidebar-arrow.svg" alt="" className="w-4" />
                     </button>
                 </div>
