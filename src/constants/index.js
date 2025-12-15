@@ -148,7 +148,7 @@ const techStack = [
     },
     {
         category: "Frontend",
-        items: ["React.js", "Next.js", "TypeScript", "HTML5"],
+        items: ["React.js", "Next.js", "TypeScript", "HTML5", "Bootstrap", "JQuery"],
     },
     {
         category: "Styling",
@@ -156,11 +156,15 @@ const techStack = [
     },
     {
         category: "Backend",
-        items: ["Node.js", "Laravel", "FastAPI", "HAProxy"],
+        items: ["Node.js", "Express.js", "PHP (Legacy)", "REST API's"],
+    },
+    {
+        category: "DevOps",
+        items: ["Apache", "NGINX", "Docker", "HAProxy"],
     },
     {
         category: "Database",
-        items: ["MySQL", "PostgreSQL", "NoSQL", "FlatFile"],
+        items: ["MySQL", "MariaDB", "PostgreSQL", "MongoDB"],
     },
     {
         category: "Dev Tools",
@@ -169,11 +173,7 @@ const techStack = [
     {
         category: "AWS",
         items: ["EC2", "S3", "ACM", "WAF", "IAM", "CloudFlare"],
-    },
-    {
-        category: "IDE",
-        items: ["VSCode", "WebStorm", "Vim", "PyCharm"],
-    },
+    }
 ];
 
 const socials = [
