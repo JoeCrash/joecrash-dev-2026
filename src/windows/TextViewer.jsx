@@ -9,7 +9,7 @@ const TextViewer = () => {
     if (!data) return null;
 
     const { name, image, subtitle, description } = data || {};
-
+    console.log("text", name)
     return (
         <>
             <div id="window-header">

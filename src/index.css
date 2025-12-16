@@ -117,15 +117,15 @@ body {
         @apply flex gap-2;
 
         .close {
-            @apply size-3.5 rounded-full bg-[#ff6157] cursor-pointer;
+            @apply size-4 rounded-full bg-[#ff6157] cursor-pointer;
         }
 
         .minimize {
-            @apply size-3.5 rounded-full bg-[#ffc030];
+            @apply size-4 rounded-full bg-[#ffc030];
         }
 
         .maximize {
-            @apply size-3.5 rounded-full bg-[#2acb42];
+            @apply size-4 rounded-full bg-[#2acb42];
         }
     }
 
@@ -355,8 +355,7 @@ body {
     }
 
     #resume {
-        @apply w-fit h-fit absolute top-16 left-7/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
-
+        @apply w-fit h-fit absolute top-10 left-7/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
     }
 
     #finder {
