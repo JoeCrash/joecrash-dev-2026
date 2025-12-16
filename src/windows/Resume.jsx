@@ -1,11 +1,11 @@
-import WindowWrapper from "#hoc/WindowWrapper.jsx";
-import {WindowControls} from "#components/index.js";
+import {useState} from "react";
 import {Download, ChevronLeft, ChevronRight, ExternalLink, Ellipsis} from "lucide-react";
 import {Document, Page, pdfjs} from 'react-pdf';
-
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
-import {useState} from "react";
+
+import WindowWrapper from "#hoc/WindowWrapper.jsx";
+import {WindowControls} from "#components/index.js";
 import useWindowStore from "#store/window.js";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
@@ -45,12 +45,18 @@ const Resume = () => {
                 <a href={myPDF} target="_blank" rel="noopener noreferrer" title="View resume in new tab" className="pl-2 cursor-pointer">
                     <ExternalLink />
                 </a>
-                {title ? <h2>{title}</h2> : <h2>Resume.pdf</h2>}
+                <h2>{title}</h2>
                 { numPages > 1 ?
                     <div className="w-1/2 flex items-center">
                         <div className="flex items-center gap-1 mr-2">
-                            <ChevronLeft className="icon" onClick={pageNumber > 1 ? previousPage : null} />
-                            <ChevronRight className="icon" onClick={pageNumber < numPages ? nextPage : null} />
+                            <ChevronLeft
+                                className={`icon ${pageNumber <= 1 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                                onClick={pageNumber > 1 ? previousPage : null}
+                            />
+                            <ChevronRight
+                                className={`icon ${pageNumber >= numPages ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                                onClick={pageNumber < numPages ? nextPage : null}
+                            />
                         </div>
                         <p className="flex items-center text-md font-bold">Pg: {pageNumber || (numPages ? 1 : '--')} of {numPages || '--'}</p>
                     </div>
@@ -68,7 +74,7 @@ const Resume = () => {
                 loading=""
                 className="bg-white"
             >
-                <Page pageNumber={pageNumber} />
+                <Page pageNumber={pageNumber} width={600} />
             </Document>
 
         </>

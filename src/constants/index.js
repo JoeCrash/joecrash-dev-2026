@@ -11,6 +11,7 @@ const navLinks = [
     {
         id: 4, name: "Resume",
         type: "resume",
+        href:"files/resume.pdf",
     },
 ];
 
@@ -472,7 +473,7 @@ const WORK_LOCATION = {
             ],
         },
     ],
-};
+};  
 const ABOUT_LOCATION = {
     id: 2,
     type: "about",

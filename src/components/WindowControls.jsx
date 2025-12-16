@@ -1,4 +1,3 @@
-import React from 'react'
 import useWindowStore from "#store/window.js";
 
 const WindowControls = ({ target }) => {
