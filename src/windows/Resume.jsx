@@ -18,6 +18,8 @@ const Resume = () => {
     const { windows } = useWindowStore();
     const data = windows?.resume?.data;
 
+    if (!data || !data.href) return null;
+
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
     const [isLoaded, setIsLoaded] = useState(false);
