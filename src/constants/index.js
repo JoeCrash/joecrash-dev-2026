@@ -622,3 +622,31 @@ const WINDOW_CONFIG = {
 };
 
 export { INITIAL_Z_INDEX, WINDOW_CONFIG };
+
+// API base URL and Terminal commands
+export const API_BASE = "/api/index.php"; // relative to current origin; Vite proxy maps to PHP in dev
+export const TERMINAL_HEX_PREFIX = "^"; // Prefix that announces an inline hex color (e.g., ^#ff0000)
+
+// TERMINAL_CMD shape: {
+//   command: string (required),
+//   help?: string,
+//   endpoint?: string, // appended to API_BASE, e.g., '?action=hello'
+//   function?: string, // frontend handler key
+// }
+export const TERMINAL_CMD = {
+    clear: {
+        command: "clear",
+        help: "Clear the terminal screen",
+        function: "clear",
+    },
+    helloUI: {
+        command: "helloUI",
+        help: "Prints a friendly UI message",
+        function: "helloUI",
+    },
+    helloAPI: {
+        command: "helloAPI",
+        help: "Says hello from the backend API",
+        endpoint: "?action=hello",
+    },
+};

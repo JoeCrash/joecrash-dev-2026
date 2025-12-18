@@ -1,4 +1,4 @@
-import Terminal from '#windows/Terminal';
+import Terminal from '#windows/Terminal2.jsx';
 import Safari from '#windows/Safari';
 import Resume from '#windows/Resume';
 import Finder from '#windows/Finder';

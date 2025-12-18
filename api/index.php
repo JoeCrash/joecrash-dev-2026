@@ -1,11 +1,50 @@
 <?php
-// IP whitelist for development only
-$allowed_ips = ['127.0.0.1', '::1'];
-if (!in_array($_SERVER['REMOTE_ADDR'], $allowed_ips)) {
-    http_response_code(403);
-    die('Access denied');
+// Simple PHP API bootstrap for low-end LAMP servers
+// Provides a minimal router and JSON responses
+
+header('Content-Type: application/json; charset=utf-8');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(204);
+    exit;
 }
 
-// Add additional authentication here
-phpinfo();
+function json($data, $status = 200) {
+    http_response_code($status);
+    echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    exit;
+}
+
+// Determine action: GET ?action=... or POST JSON { action }
+$action = $_GET['action'] ?? null;
+$ct = strtolower($_SERVER['CONTENT_TYPE'] ?? '');
+if (!$action && str_starts_with($ct, 'application/json')) {
+    $raw = file_get_contents('php://input');
+    $payload = json_decode($raw, true);
+    if (json_last_error() === JSON_ERROR_NONE && isset($payload['action'])) {
+        $action = $payload['action'];
+    }
+}
+
+// Basic routing
+switch ($action) {
+    case 'hello':
+        json([
+            'ok' => true,
+            'command' => 'helloAPI',
+            'message' => '^#65eeabHello from the ^#ab6599PHP API 👋',
+            'timestamp' => date('c'),
+        ]);
+        break;
+
+    default:
+        json([
+            'ok' => false,
+            'error' => 'Unknown action',
+            'hint' => 'Try action=hello',
+        ], 404);
+}
 ?>
