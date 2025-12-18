@@ -204,7 +204,7 @@ body {
         input[type="range"]::-moz-range-track {
             @apply h-1 rounded-full bg-white/20;
         }
-        #input[type="range"]::-moz-range-thumb {
+        input[type="range"]::-moz-range-thumb {
             @apply size-3 rounded-full bg-white shadow border-0;
         }
         .volume-slider input[type="range"] {
