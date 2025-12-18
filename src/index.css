@@ -148,15 +148,10 @@ body {
     }
 
     #video-controls {
-        @apply w-full max-w-3xl mx-auto select-none;
+        @apply w-full max-w-3xl mx-auto select-none px-4 py-2;
         @apply bg-black/35 backdrop-blur-3xl font-bold text-white/90;
-        @apply px-4 py-2;
-        @apply border border-white/10 shadow-lg;
-        @apply flex flex-col gap-1;
-    }
-
-    /* Row 1 */
-    #video-controls {
+        @apply border border-white/10 shadow-lg flex flex-col gap-1;
+        /* Row 1 */
         .controls {
             @apply grid grid-cols-3 items-center gap-2;
         }
@@ -188,7 +183,6 @@ body {
         .scrub {
             @apply col-span-4;
         }
-
         /* Scrubber (timeline) range styling */
         input[type="range"] {
             @apply w-full appearance-none bg-transparent;
