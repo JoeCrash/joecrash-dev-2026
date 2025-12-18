@@ -11,6 +11,7 @@ const navLinks = [
     {
         id: 4, name: "Resume",
         type: "resume",
+        href:"files/resume.pdf",
     },
 ];
 
@@ -148,7 +149,7 @@ const techStack = [
     },
     {
         category: "Frontend",
-        items: ["React.js", "Next.js", "TypeScript", "HTML5"],
+        items: ["Vite.js", "React.js", "Next.js", "TypeScript", "HTML5", "Bootstrap", "jQuery"],
     },
     {
         category: "Styling",
@@ -156,11 +157,15 @@ const techStack = [
     },
     {
         category: "Backend",
-        items: ["Node.js", "Laravel", "FastAPI", "HAProxy"],
+        items: ["Node.js", "Express.js", "PHP (Legacy)", "REST APIs"],
     },
     {
         category: "Database",
-        items: ["MySQL", "PostgreSQL", "NoSQL", "FlatFile"],
+        items: ["MySQL", "MariaDB", "PostgreSQL", "MongoDB"],
+    },
+    {
+        category: "DevOps",
+        items: ["Apache", "NGINX", "Docker", "HAProxy"],
     },
     {
         category: "Dev Tools",
@@ -168,12 +173,8 @@ const techStack = [
     },
     {
         category: "AWS",
-        items: ["EC2", "S3", "ACM", "WAF", "IAM", "CloudFlare"],
-    },
-    {
-        category: "IDE",
-        items: ["VSCode", "WebStorm", "Vim", "PyCharm"],
-    },
+        items: ["EC2", "S3", "ACM", "WAF", "IAM", "CloudFront"],
+    }
 ];
 
 const socials = [
@@ -241,38 +242,102 @@ const WORK_LOCATION = {
         // ▶ Project 1
         {
             id: 5,
-            name: "Nike Ecommerce Website Application",
-            icon: `${PATHS.folders}blue.svg`,
+            name: "Curious Joey Stories",
+            icon: `${PATHS.folders}red-videos.svg`,
             kind: "folder",
-            position: "top-10 left-5", // icon position inside Finder
-            windowPosition: "top-[5vh] left-5", // optional: Finder window position
+            position: "top-5 left-3", // icon position inside Finder
+            windowPosition: "top-[5vh] left-4", // optional: Finder window position
             children: [
                 {
                     id: 1,
-                    name: "Nike Project.txt",
+                    name: "Curious Joey Project.txt",
                     icon: EXT_ICONS.txt,
                     kind: "file",
                     fileType: "txt",
                     position: "top-5 left-10",
                     description: [
-                        "The Nike eCommerce website is a sleek and modern platform designed for shopping the latest Nike collections.",
-                        "Instead of a simple online store, it delivers an immersive experience with bold visuals, interactive product displays, and smooth navigation.",
-                        "Think of it like walking into a flagship Nike store—but right from your phone or laptop.",
-                        "It's built with Next.js and Tailwind, ensuring fast performance, responsive design, and a clean, premium look.",
+                        "Curious Joey Stories is a kids’ educational adventure IP where Joey explores real-world cities through values-forward storytelling.",
+                        "Each release includes print/Kindle + digital editions, plus narrated read-along videos with on-screen words and free activity packs.",
+                        "The series is built as 14-page episodes (3–6 min) using a repeatable 7-beat story spine that blends STEM, culture, and emotion.",
+                        "It’s supported by a scalable, automation-heavy production pipeline to ship books, longform read-alongs, and short-form clips.",
                     ],
                 },
                 {
                     id: 2,
-                    name: "nike.com",
+                    name: "curiousjoey.com",
                     icon: APP_ICONS.safari,
                     kind: "file",
                     fileType: "url",
-                    href: "https://youtu.be/fZdTYswuZjU?si=Awjl-pIst9e09_UU",
+                    href: "https://curiousjoey.com",
                     position: "top-10 right-20",
                 },
                 {
                     id: 4,
-                    name: "nike.png",
+                    name: "curiousjoey.png",
+                    icon: EXT_ICONS.png,
+                    kind: "file",
+                    fileType: "img",
+                    position: "top-52 right-80",
+                    imageUrl: "/images/project-1.png",
+                },
+                {
+                    id: 5,
+                    name: "Design.fig",
+                    icon: APP_ICONS.figma,
+                    kind: "file",
+                    fileType: "fig",
+                    href: "https://google.com",
+                    position: "top-60 right-20",
+                },
+                {
+                    id: 6,
+                    name: "Demo.mp4",
+                    icon: EXT_ICONS.video,
+                    kind: "file",
+                    fileType: "video",
+                    video: "/videos/demo.mp4",
+                    // ytEmbed: "https://www.youtube.com/embed/W0XznQwdXRY?si=x0w-VUW_TpiAp5ng",
+                    position: "top-40 right-50",
+                },
+            ],
+        },
+
+        // ▶ Project 1
+        {
+            id: 77,
+            name: "Winefetch - Ecommerce Platform",
+            icon: `${PATHS.folders}purple-wine.svg`,
+            kind: "folder",
+            position: "top-30 left-4", // icon position inside Finder
+            windowPosition: "top-[16vh] left-0", // optional: Finder window position
+            children: [
+                {
+                    id: 1,
+                    name: "Winefetch Project.txt",
+                    icon: EXT_ICONS.txt,
+                    kind: "file",
+                    fileType: "txt",
+                    position: "top-5 left-10",
+                    description: [
+                        "WineFetch is a SaaS e-commerce platform for wine and spirits retailers to launch and run branded online stores.",
+                        "It supports customizable, mobile-friendly, PCI-compliant storefronts built for wine-shop workflows.",
+                        "It integrates with POS systems and centralizes catalog, orders, and promotions.",
+                        "It includes retention marketing automation (segmentation, triggers, abandoned cart) to drive repeat revenue.",
+                        "It provides fraud prevention and automated product-feed syndication to improve discoverability and sales."
+                    ],
+                },
+                {
+                    id: 2,
+                    name: "winefetch.com",
+                    icon: APP_ICONS.safari,
+                    kind: "file",
+                    fileType: "url",
+                    href: "https://winefetch.com",
+                    position: "top-10 right-20",
+                },
+                {
+                    id: 4,
+                    name: "winefetch.png",
                     icon: EXT_ICONS.png,
                     kind: "file",
                     fileType: "img",
@@ -304,38 +369,39 @@ const WORK_LOCATION = {
         // ▶ Project 2
         {
             id: 6,
-            name: "AI Resume Analyzer",
-            icon: `${PATHS.folders}green.svg`,
+            name: "COMPS Real Estate Saas",
+            icon: `${PATHS.folders}default-user-home.svg`,
             kind: "folder",
-            position: "top-52 right-80",
-            windowPosition: "top-[20vh] left-7",
+            position: "top-30 left-46",
+            windowPosition: "top-[29vh] left-1",
             children: [
                 {
                     id: 1,
-                    name: "AI Resume Analyzer Project.txt",
+                    name: "COMPS Project.txt",
                     icon: EXT_ICONS.txt,
                     kind: "file",
                     fileType: "txt",
                     position: "top-5 right-10",
                     description: [
-                        "AI Resume Analyzer is a smart tool that helps you perfect your resume with instant feedback.",
-                        "Instead of guessing what recruiters want, you get AI-powered insights on keywords, formatting, and overall impact.",
-                        "Think of it like having a career coach—pointing out strengths, fixing weaknesses, and boosting your chances of landing interviews.",
-                        "It's built with Next.js and Tailwind, so it runs fast, looks professional, and works seamlessly on any device.",
+                        "COMPS INC is a New York–focused real estate data SaaS used by appraisers, brokers, lenders, and banks to pull verified property comps fast.",
+                        "It centralizes assessments, sales history, latest comparables, tax records, and property photos across NYC + Long Island + surrounding counties (11 total).",
+                        "The platform layers in mapping + risk context (block/lot maps, aerials, FEMA flood records) plus NYC record sources like ACRIS and OASIS.",
+                        "Users generate professional reports (CMA, market trends, MC1004) and can export results (CSV/DBF/XLS) while saving searches for reuse.",
+                        "A key differentiator is data quality: records are reviewed and corrected (e.g., mismatched lot numbers) to keep New York–specific datasets accurate.",
                     ],
                 },
                 {
                     id: 2,
-                    name: "ai-resume-analyzer.com",
+                    name: "compsusa.com",
                     icon: APP_ICONS.safari,
                     kind: "file",
                     fileType: "url",
-                    href: "https://youtu.be/iYOz165wGkQ?si=R1hs8Legl200m0Cl",
+                    href: "https://compsusa.com",
                     position: "top-20 left-20",
                 },
                 {
                     id: 4,
-                    name: "ai-resume-analyzer.png",
+                    name: "compsusa.png",
                     icon: EXT_ICONS.png,
                     kind: "file",
                     fileType: "img",
@@ -357,38 +423,38 @@ const WORK_LOCATION = {
         // ▶ Project 3
         {
             id: 7,
-            name: "Food Delivery App",
+            name: "BuySellMemo Gemstone Exchange",
             icon: `${PATHS.folders}orange.svg`,
             kind: "folder",
-            position: "top-10 left-80",
-            windowPosition: "top-[33vh] left-7",
+            position: "top-30 left-90",
+            windowPosition: "top-[40vh] left-1",
             children: [
                 {
                     id: 1,
-                    name: "Food Delivery App Project.txt",
+                    name: "KIG Project.txt",
                     icon: EXT_ICONS.txt,
                     kind: "file",
                     fileType: "txt",
                     position: "top-5 left-10",
                     description: [
-                        "Our Food Delivery App is a fast and convenient way to order meals from your favorite restaurants.",
-                        "Instead of making calls or waiting in line, you can browse menus, customize orders, and track deliveries in real time.",
-                        "Think of it like having your favorite restaurants in your pocket—ready to deliver anytime, anywhere.",
-                        "It’s built with React Native, so it works smoothly on both iOS and Android with a clean, modern design.",
+                        "BuySellMemo is a trade-focused online gem sourcing and sales platform created by Knupfer International Gems (KIG) for retailers, designers/manufacturers, and gem wholesalers.",
+                        "It’s built to make sourcing hard-to-find loose gemstones faster via search + request workflows, backed by KIG’s supplier expertise.",
+                        "Access is gated—users register and must be approved—so the marketplace stays business-to-business and relationship-driven.",
+                        "Industry press has cited BuySellMemo.com as one of the trade’s more successful venues for loose gemstone sales.",
                     ],
                 },
                 {
                     id: 2,
-                    name: "food-delivery-app.com",
+                    name: "buysellmemo.com",
                     icon: APP_ICONS.safari,
                     kind: "file",
                     fileType: "url",
-                    href: "https://youtu.be/LKrX390fJMw?si=cExkuVhf2DTV9G2-",
+                    href: "https://buysellmemo.com",
                     position: "top-10 right-20",
                 },
                 {
                     id: 4,
-                    name: "food-delivery-app.png",
+                    name: "buysellmemo.png",
                     icon: EXT_ICONS.png,
                     kind: "file",
                     fileType: "img",
@@ -407,7 +473,7 @@ const WORK_LOCATION = {
             ],
         },
     ],
-};
+};  
 const ABOUT_LOCATION = {
     id: 2,
     type: "about",
@@ -468,13 +534,22 @@ const RESUME_LOCATION = {
     kind: "folder",
     children: [
         {
-            id: 1,
-            name: "Resume.pdf",
+            id: 2,
+            name: "One Page Resume.pdf",
             icon: EXT_ICONS.pdf,
             kind: "file",
             fileType: "pdf",
-            // you can add `href` if you want to open a hosted resume
-            // href: "/your/resume/path.pdf",
+            position: "top-5 left-10",
+            href: "files/resume.pdf",
+        },
+        {
+            id: 1,
+            name: "Extended Resume.pdf",
+            icon: EXT_ICONS.pdf,
+            kind: "file",
+            fileType: "pdf",
+            position: "top-5 left-50",
+            href: "files/jmedina_extended_resume_2026.pdf",
         },
     ],
 };
@@ -535,15 +610,15 @@ export const galleries = {
 
 const INITIAL_Z_INDEX = 1000;
 const WINDOW_CONFIG = {
-    finder: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    contact: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    resume: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    safari: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    photos: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    videofile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+    finder: { isOpen: false, isMaximized:false, zIndex: INITIAL_Z_INDEX, data: null },
+    contact: { isOpen: false, isMaximized:false, zIndex: INITIAL_Z_INDEX, data: null },
+    resume: { isOpen: false, isMaximized:false, zIndex: INITIAL_Z_INDEX, data: null },
+    safari: { isOpen: false, isMaximized:false, zIndex: INITIAL_Z_INDEX, data: null },
+    photos: { isOpen: false, isMaximized:false, zIndex: INITIAL_Z_INDEX, data: null },
+    terminal: { isOpen: false, isMaximized:false, zIndex: INITIAL_Z_INDEX, data: null },
+    txtfile: { isOpen: false, isMaximized:false, zIndex: INITIAL_Z_INDEX, data: null },
+    imgfile: { isOpen: false, isMaximized:false, zIndex: INITIAL_Z_INDEX, data: null },
+    videofile: { isOpen: false, isMaximized:false, zIndex: INITIAL_Z_INDEX, data: null },
 };
 
 export { INITIAL_Z_INDEX, WINDOW_CONFIG };

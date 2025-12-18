@@ -18,7 +18,6 @@ const App = () => {
             <Gallery/>
             <Home/>
         </main>
-
     )
 }
 

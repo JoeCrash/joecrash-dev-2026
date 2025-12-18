@@ -2,6 +2,7 @@ import React, {useLayoutEffect, useRef} from 'react';
 import gsap from "gsap";
 import {useGSAP} from "@gsap/react";
 import {Draggable} from "gsap/Draggable";
+import clsx from "clsx";
 
 import useWindowStore from "#store/window.js";
 
@@ -10,7 +11,7 @@ gsap.registerPlugin(Draggable);
 const WindowWrapper = (Component, windowKey) => {
     const Wrapped = (props) => {
         const {focusWindow, windows} = useWindowStore();
-        const {isOpen, zIndex} = windows[windowKey];
+        const {isOpen, zIndex, isMaximized} = windows[windowKey];
         const ref = useRef(null);
 
         useGSAP(() => {
@@ -23,16 +24,26 @@ const WindowWrapper = (Component, windowKey) => {
 
         useGSAP(() => {
             const el = ref.current;
-            if (!el || !isOpen) return;
+            if (!el || !isOpen || isMaximized) return;
             const header = el.querySelector("#window-header"); // scoped lookup
             const [instance] = Draggable.create(el, {
                 trigger: header || el,
-                //onPress: () => focusWindow(windowKey),
             });
             return () => {
                 instance && instance.kill();
             }
-        }, [isOpen]);
+        }, [isOpen, isMaximized]);
+
+        // When maximizing, reset any drag transform so the window snaps to (0, 56px) via CSS class
+        useLayoutEffect(() => {
+            const el = ref.current;
+            if (!el) return;
+            if (isMaximized) {
+                // Remove GSAP/Draggable transform offsets
+                gsap.set(el, { x: 0, y: 0 });
+                el.style.removeProperty("transform");
+            }
+        }, [isMaximized]);
 
         useLayoutEffect(() => {
             const el = ref.current;
@@ -45,7 +56,7 @@ const WindowWrapper = (Component, windowKey) => {
             id={windowKey}
             ref={ref}
             style={{ zIndex }}
-            className="absolute"
+            className={clsx("absolute", isMaximized && "window-maximized")}
             onPointerDownCapture={() => focusWindow(windowKey)}
         >
             <Component {...props} />

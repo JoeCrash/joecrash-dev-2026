@@ -13,7 +13,7 @@ const Finder = () => {
     const { setActiveLocation, activeLocation} = useLocationStore();
 
     const openItem = (item) => {
-        if(item.fileType === "pdf") return openWindow("resume");
+        if(item.fileType === "pdf") return openWindow("resume", item);
         if(item.kind === "folder") return setActiveLocation(item);
         if(["fig", "url"].includes(item.fileType) && item.href) {
             const newWindow = window.open(item.href, "_blank","noopener,noreferrer");

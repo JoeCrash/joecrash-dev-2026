@@ -1,12 +1,22 @@
+import {useEffect, useState} from "react";
 import dayjs from "dayjs";
 
-import {navIcons, navLinks} from "../constants";
 import useWindowStore from "#store/window.js";
 import useLocationStore from "#store/location.js";
+
+import {navIcons, navLinks} from "../constants";
 
 const Navbar = () => {
     const { openWindow } = useWindowStore();
     const { setActiveLocationByType } = useLocationStore();
+
+    const timeFormat = "ddd MMM D h:mm A";
+    const [time, setTime] = useState(dayjs().format(timeFormat));
+    useEffect(() => {
+        const interval = setInterval(() => setTime(dayjs().format(timeFormat)), 60000);
+        return () => clearInterval(interval);
+    }, [timeFormat]);
+
     return (
         <nav>
             <div>
@@ -14,10 +24,10 @@ const Navbar = () => {
                 <p className="font-bold">JoeCrash's Portfolio</p>
                 <ul>
                     {navLinks.map(
-                        ({id, name, type, locationType = false}) => (
+                        ({id, name, type, locationType = false, href}) => (
                             <li key={id} role="button" onClick={
                                 () => {
-                                    openWindow(type);
+                                    openWindow(type, {href} );
                                     locationType ? setActiveLocationByType(locationType) : null;
                                 }
                             }>
@@ -34,7 +44,7 @@ const Navbar = () => {
                     )}
                 </ul>
                 <time>
-                    {dayjs().format("ddd MMM D h:mm A")}
+                    {time}
                 </time>
             </div>
         </nav>

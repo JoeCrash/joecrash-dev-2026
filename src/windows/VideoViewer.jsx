@@ -40,22 +40,21 @@ const VideoViewer = () => {
         // initial sync
         onDur(); onTime(); onVol(); setIsPlaying(!v.paused);
 
-        v.addEventListener("timeupdate", onTime);
-        v.addEventListener("durationchange", onDur);
-        v.addEventListener("loadedmetadata", onDur);
-        v.addEventListener("play", onPlay);
-        v.addEventListener("pause", onPause);
-        v.addEventListener("ended", onPause);
-        v.addEventListener("volumechange", onVol);
+        //add listeners here, auto add/remove.
+        const listeners = [
+            {event:"timeupdate", func:onTime},
+            {event:"durationchange", func:onDur},
+            {event:"loadedmetadata", func:onDur},
+            {event:"play", func:onPlay},
+            {event:"pause", func:onPause},
+            {event:"ended", func:onPause},
+            {event:"volumechange", func:onVol}
+        ];
+
+        listeners.forEach(({ event, func }) => v.addEventListener(event, func));
 
         return () => {
-            v.removeEventListener("timeupdate", onTime);
-            v.removeEventListener("durationchange", onDur);
-            v.removeEventListener("loadedmetadata", onDur);
-            v.removeEventListener("play", onPlay);
-            v.removeEventListener("pause", onPause);
-            v.removeEventListener("ended", onPause);
-            v.removeEventListener("volumechange", onVol);
+            listeners.forEach(({ event, func }) => v.removeEventListener(event, func));
         };
 
     }, [data?.video]); // rebind if the src changes

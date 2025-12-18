@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import {immer} from "zustand/middleware/immer";
 import {INITIAL_Z_INDEX, WINDOW_CONFIG} from "#constants/index.js";
+import clsx from "clsx";
 
 const useWindowStore = create(
     immer((set) =>
@@ -21,6 +22,21 @@ const useWindowStore = create(
                     state.nextZIndex ++;
                 }),
 
+            maximizeWindow: (windowKey, data = null) =>
+                set((state) => {
+                    if(!state.windows[windowKey]){
+                        console.error(`Maximize window ${windowKey} not found`);
+                        return;
+                    }
+                    const win = state.windows[windowKey];
+                    // toggle maximize state
+                    win.isMaximized = !win.isMaximized;
+                    win.isOpen = true; // ensure it's open
+                    win.zIndex = state.nextZIndex;
+                    win.data = data ?? win.data;
+                    state.nextZIndex ++;
+                }),
+
             closeWindow: (windowKey, data = null) =>
                 set((state) => {
                     if(!state.windows[windowKey]){
@@ -29,9 +45,9 @@ const useWindowStore = create(
                     }
                     const win = state.windows[windowKey];
                     win.isOpen = false;
+                    win.isMaximized = false;
                     win.zIndex = INITIAL_Z_INDEX;
                     win.data = null;
-
                 }),
 
             focusWindow: (windowKey, data = null) =>

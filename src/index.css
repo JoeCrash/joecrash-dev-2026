@@ -40,7 +40,7 @@ body {
         @apply flex justify-between items-center bg-white/35 opacity-80 backdrop-blur-xs p-2 px-5 select-none;
 
         div {
-            @apply flex items-center max-sm:w-full max-sm:justify-center gap-5;
+            @apply flex items-center max-sm:w-full max-sm:justify-center gap-6;
 
             &:last-child {
                 @apply max-sm:hidden;
@@ -78,15 +78,15 @@ body {
         }
     }
 
+    .tooltip {
+        @apply !py-1 !px-3 !w-fit !text-center !text-xs !rounded-md !bg-blue-200 !text-blue-900 !shadow-2xl;
+    }
+
     #dock {
         @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-50 select-none max-sm:hidden;
 
         .dock-container {
             @apply bg-white/20 backdrop-blur-sm justify-between rounded-3xl p-3 flex items-end gap-2;
-        }
-
-        .tooltip {
-            @apply !py-1 !px-3 !w-fit !text-center !text-xs !rounded-md !bg-blue-200 !text-blue-900 !shadow-2xl;
         }
 
         .dock-icon {
@@ -96,7 +96,6 @@ body {
         .dock-img {
             @apply size-20 object-cover object-center opacity-80;
             @apply [--h:0] [--a:0] [will-change:filter];
-
             /* contours transparency because drop-shadow follows alpha */
             @apply [filter:drop-shadow(0_0_6px_hsla(var(--h),100%,65%,var(--a)))_drop-shadow(0_0_2px_hsla(var(--h),100%,65%,var(--a)))];
         }
@@ -117,88 +116,93 @@ body {
         @apply flex gap-2;
 
         .close {
-            @apply size-3.5 rounded-full bg-[#ff6157] cursor-pointer;
+            @apply size-4 rounded-full bg-[#ff6157] cursor-pointer;
         }
 
         .minimize {
-            @apply size-3.5 rounded-full bg-[#ffc030];
+            @apply size-4 rounded-full bg-[#ffc030];
         }
 
         .maximize {
-            @apply size-3.5 rounded-full bg-[#2acb42];
+            @apply size-4 rounded-full bg-[#2acb42];
         }
     }
-
-    #video-controls {
-        @apply w-full max-w-3xl mx-auto select-none;
-        @apply bg-black/35 backdrop-blur-3xl font-bold text-white/90;
-        @apply px-4 py-2;
-        @apply border border-white/10 shadow-lg;
-        @apply flex flex-col gap-1;
-    }
-
-    /* Row 1 */
-    #video-controls .controls {
-        @apply grid grid-cols-3 items-center gap-2;
-    }
-    #video-controls .volume-slider {
-        @apply flex items-center justify-start gap-2;
-    }
-    #video-controls .playnav {
-        @apply flex items-center justify-center gap-3;
-    }
-    #video-controls .sidebar {
-        @apply flex items-center justify-end gap-3;
-    }
-    #video-controls button {
-        @apply p-1.5 rounded-lg hover:bg-white/10 active:scale-95 transition;
-    }
-    /* If your SVGs are already white, delete this line */
-    #video-controls img {
-        @apply invert opacity-90;
-    }
-    /* Row 2 */
-    #video-controls .timeline {
-        @apply grid grid-cols-6 items-center gap-3;
-    }
-    #video-controls .start-time {
-        @apply col-span-1 text-sm font-roboto tabular-nums text-white/70;
-    }
-    #video-controls .duration {
-        @apply col-span-1 text-sm font-roboto tabular-nums text-white/70 text-right;
-    }
-    #video-controls .scrub {
-        @apply col-span-4;
-    }
-    /* Scrubber (timeline) range styling */
-    #video-controls input[type="range"] {
-        @apply w-full appearance-none bg-transparent;
-    }
-    #video-controls input[type="range"]::-webkit-slider-runnable-track {
-        @apply h-1 rounded-full bg-white/20;
-    }
-    #video-controls input[type="range"]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        @apply size-3 rounded-full bg-white shadow;
-        @apply -mt-1; /* centers thumb on 4px track */
-    }
-    #video-controls input[type="range"]::-moz-range-track {
-        @apply h-1 rounded-full bg-white/20;
-    }
-    #video-controls input[type="range"]::-moz-range-thumb {
-        @apply size-3 rounded-full bg-white shadow border-0;
-    }
-    /* Make the volume slider a bit shorter like the screenshot */
-    #video-controls .volume-slider input[type="range"] {
-        @apply max-w-28;
-    }
-
-
 
     #window-header {
         @apply flex items-center justify-between px-4 py-3 bg-gray-50/85 border-b border-gray-200 select-none text-sm text-gray-500;
         h2 {
             @apply font-bold text-sm text-center w-full;
+        }
+    }
+
+    .window-maximized {
+        position: absolute !important;
+        top: 56px !important; /* navbar height */
+        left: 0 !important;
+        right: 0 !important;
+        width: 100dvw !important;
+        height: calc(100dvh - 56px) !important;
+        margin: 0 !important;
+        border-radius: 1.5rem; /* keep rounded corners consistent */
+        overflow: hidden;
+    }
+
+    #video-controls {
+        @apply w-full max-w-3xl mx-auto select-none px-4 py-2;
+        @apply bg-black/35 backdrop-blur-3xl font-bold text-white/90;
+        @apply border border-white/10 shadow-lg flex flex-col gap-1;
+        /* Row 1 */
+        .controls {
+            @apply grid grid-cols-3 items-center gap-2;
+        }
+        .volume-slider {
+            @apply flex items-center justify-start gap-2;
+        }
+        .playnav {
+            @apply flex items-center justify-center gap-3;
+        }
+        .sidebar {
+            @apply flex items-center justify-end gap-3;
+        }
+        button {
+            @apply p-1.5 rounded-lg hover:bg-white/10 active:scale-95 transition;
+        }
+        img {
+            @apply invert opacity-90;
+        }
+        /* Row 2 */
+        .timeline {
+            @apply grid grid-cols-6 items-center gap-3;
+        }
+        .start-time {
+            @apply col-span-1 text-sm font-roboto tabular-nums text-white/70;
+        }
+        .duration {
+            @apply col-span-1 text-sm font-roboto tabular-nums text-white/70 text-right;
+        }
+        .scrub {
+            @apply col-span-4;
+        }
+        /* Scrubber (timeline) range styling */
+        input[type="range"] {
+            @apply w-full appearance-none bg-transparent;
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            @apply h-1 rounded-full bg-white/20;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            @apply size-3 rounded-full bg-white shadow;
+            @apply -mt-1; /* centers thumb on 4px track */
+        }
+        input[type="range"]::-moz-range-track {
+            @apply h-1 rounded-full bg-white/20;
+        }
+        input[type="range"]::-moz-range-thumb {
+            @apply size-3 rounded-full bg-white shadow border-0;
+        }
+        .volume-slider input[type="range"] {
+            @apply max-w-28;
         }
     }
 
@@ -355,8 +359,7 @@ body {
     }
 
     #resume {
-        @apply w-fit h-fit absolute top-16 left-7/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
-
+        @apply w-fit h-fit absolute top-10 left-7/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
     }
 
     #finder {
@@ -405,7 +408,6 @@ body {
 
     #txtfile {
         @apply w-md absolute top-25 right-30 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
-
     }
 
     #videofile {
