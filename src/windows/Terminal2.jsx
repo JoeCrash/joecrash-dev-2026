@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import WindowWrapper from "#hoc/WindowWrapper.jsx";
 import { WindowControls } from "#components/index.js";
 import useTerminalStore from "#store/terminal.js";
-import { API_BASE, TERMINAL_CMD, TERMINAL_HEX_PREFIX } from "#constants/index.js";
+import { API_BASE, TERMINAL_CMD, TERMINAL_HEX_PREFIX, TERMINAL_HEX_SUFFIX } from "#constants/index.js";
 
 const PROMPT = "guest@joecrash-dev ~ %";
 
@@ -26,26 +26,25 @@ function normalizeHex(h) {
   return null;
 }
 
-function parseColoredText(text, prefix) {
+function parseColoredText(text, prefix, suffix) {
   const parts = [];
-  const esc = escapeRegExp(prefix);
-  const regex = new RegExp(`${esc}#([0-9a-fA-F]{3,8})`, "g");
+  const escPrefix = escapeRegExp(prefix);
+  const escSuffix = escapeRegExp(suffix);
+  // Accept only exact tokens like ^#RRGGBB^
+  const regex = new RegExp(`${escPrefix}#([0-9a-fA-F]{6})${escSuffix}`, "g");
   let lastIndex = 0;
   let currentColor = "#ffffff";
   let hasToken = false;
   let match;
   while ((match = regex.exec(text)) !== null) {
-    hasToken = true;
     const start = match.index;
     const before = text.slice(lastIndex, start);
     if (before) {
       parts.push({ text: before, color: currentColor });
     }
-    const raw = match[1];
-    const norm = normalizeHex(raw);
-    if (norm) {
-      currentColor = norm;
-    }
+    hasToken = true;
+    const hex = match[1].toLowerCase();
+    currentColor = `#${hex}`;
     lastIndex = regex.lastIndex;
   }
   const tail = text.slice(lastIndex);
@@ -56,7 +55,7 @@ function parseColoredText(text, prefix) {
 }
 
 const Terminal2 = () => {
-  const { history, addEntry, clearHistory } = useTerminalStore();
+  const { history, commands, addEntry, clearHistory } = useTerminalStore();
   const [input, setInput] = useState("");
   const [historyIndex, setHistoryIndex] = useState(null); // null = not browsing, otherwise index into commandHistory
   const [draftInput, setDraftInput] = useState(""); // remembers the input before starting to browse history
@@ -68,22 +67,22 @@ const Terminal2 = () => {
     }
   }, [history]);
 
-  // Build a list of previously executed commands (most recent first)
+  // Build a list of previously executed commandRegistry (most recent first)
   const commandHistory = useMemo(() => {
-    const cmds = history
-      .map((h) => h.command)
-      .filter((c) => typeof c === "string" && c.trim().length > 0);
-    if (cmds.length === 0) return [];
-    // Remove consecutive duplicates for nicer UX
-    const dedup = [];
-    for (let i = 0; i < cmds.length; i++) {
-      const c = cmds[i];
-      if (i === 0 || c !== cmds[i - 1]) dedup.push(c);
+    if (!commands || commands.length === 0) return [];
+    // Iterate from newest to oldest, removing consecutive duplicates
+    const result = [];
+    for (let i = commands.length - 1; i >= 0; i--) {
+      const c = commands[i];
+      if (typeof c !== "string" || c.trim().length === 0) continue;
+      if (result.length === 0 || result[result.length - 1] !== c) {
+        result.push(c);
+      }
     }
-    return dedup.reverse(); // most recent first
-  }, [history]);
+    return result; // most recent first
+  }, [commands]);
 
-  const commands = useMemo(() => TERMINAL_CMD, []);
+  const commandRegistry = useMemo(() => TERMINAL_CMD, []);
 
   const handleKeyDown = (e) => {
     if (e.key === "ArrowUp" || e.key === "ArrowDown") {
@@ -91,7 +90,7 @@ const Terminal2 = () => {
       e.preventDefault();
 
       if (e.key === "ArrowUp") {
-        // Move to older commands (increase index)
+        // Move to older commandRegistry (increase index)
         if (historyIndex === null) {
           // start browsing; remember current input
           setDraftInput(input);
@@ -132,6 +131,16 @@ const Terminal2 = () => {
       case "helloUI":
         addEntry({ command: "helloUI", output: "Hello from the UI 👋", type: "success" });
         return;
+      case "help": {
+        // Build a two-color help list using hex prefix/suffix tokens (^#RRGGBB^)
+        const primary = "#65eeab"; // command color (greenish)
+        const secondary = "#b3b3b3"; // description color (light gray)
+        const lines = Object.values(TERMINAL_CMD)
+          .map((c) => `${TERMINAL_HEX_PREFIX}${primary}${TERMINAL_HEX_SUFFIX}${c.command} ${TERMINAL_HEX_PREFIX}${secondary}${TERMINAL_HEX_SUFFIX}${c.help || ""}`)
+          .join("\n");
+        addEntry({ command: "help", output: lines, type: "info" });
+        return;
+      }
       default:
         addEntry({ command: key, output: `No frontend handler for ${key}`, type: "error" });
     }
@@ -156,8 +165,9 @@ const Terminal2 = () => {
     const cmd = input.trim();
     if (!cmd) return;
 
-    // find matching command
-    const entry = Object.values(commands).find((c) => c.command === cmd);
+    // find matching command (case-insensitive)
+    const cmdLower = cmd.toLowerCase();
+    const entry = Object.values(commandRegistry).find((c) => String(c.command).toLowerCase() === cmdLower);
 
     if (!entry) {
       addEntry({ command: cmd, output: `Command not found: ${cmd}`, type: "error" });
@@ -197,12 +207,12 @@ const Terminal2 = () => {
         <div ref={outputRef} className="h-[360px] overflow-y-auto pr-2 custom-scrollbar">
           {history.length === 0 && (
             <div className="text-gray-400 mb-2">
-              Type "helloUI" or "helloAPI". Use "clear" to clear the screen.
+              Type "helloUI", "helloAPI", or "help". Use "clear" to clear the screen.
             </div>
           )}
           {history.map((row) => {
             const { parts, hasToken } = row.output
-              ? parseColoredText(String(row.output), TERMINAL_HEX_PREFIX)
+              ? parseColoredText(String(row.output), TERMINAL_HEX_PREFIX, TERMINAL_HEX_SUFFIX)
               : { parts: [], hasToken: false };
             return (
               <div key={row.id} className="whitespace-pre-wrap">

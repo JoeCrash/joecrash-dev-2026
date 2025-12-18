@@ -3,7 +3,8 @@
 // Provides a minimal router and JSON responses
 
 header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
+$allowedOrigin = $_ENV['ALLOWED_ORIGIN'] ?? '*';
+header("Access-Control-Allow-Origin: $allowedOrigin");
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
@@ -35,7 +36,7 @@ switch ($action) {
         json([
             'ok' => true,
             'command' => 'helloAPI',
-            'message' => '^#65eeabHello from the ^#ab6599PHP API 👋',
+            'message' => '^#65eeab^Hello from the ^#ab6599^PHP API 👋',
             'timestamp' => date('c'),
         ]);
         break;

@@ -626,6 +626,7 @@ export { INITIAL_Z_INDEX, WINDOW_CONFIG };
 // API base URL and Terminal commands
 export const API_BASE = "/api/index.php"; // relative to current origin; Vite proxy maps to PHP in dev
 export const TERMINAL_HEX_PREFIX = "^"; // Prefix that announces an inline hex color (e.g., ^#ff0000)
+export const TERMINAL_HEX_SUFFIX = "^"; // Suffix to close the color token (pattern: ^#rrggbb^)
 
 // TERMINAL_CMD shape: {
 //   command: string (required),
@@ -634,6 +635,11 @@ export const TERMINAL_HEX_PREFIX = "^"; // Prefix that announces an inline hex c
 //   function?: string, // frontend handler key
 // }
 export const TERMINAL_CMD = {
+    help: {
+        command: "help",
+        help: "List available commands",
+        function: "help",
+    },
     clear: {
         command: "clear",
         help: "Clear the terminal screen",
