@@ -1,3 +1,6 @@
+/**
+ *
+ */
 import {Navbar, Welcome, Dock, Home} from "#components";
 import {Terminal, Safari, Resume, Finder, TextViewer, ImageViewer, VideoViewer, Contact, Gallery} from "#windows";
 

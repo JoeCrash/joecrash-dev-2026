@@ -16,5 +16,16 @@ export default defineConfig({
             '#hoc': resolve(dirname(fileURLToPath(import.meta.url)), 'src/hoc'),
             '#windows': resolve(dirname(fileURLToPath(import.meta.url)), 'src/windows'),
         }
-    }
+    },
+    server: {
+        proxy: {
+            // Forward /api/* requests from Vite dev server to your local PHP server
+            // Adjust target if your PHP is hosted elsewhere (e.g., http://localhost:8080)
+            '/api': {
+                target: 'http://localhost:8000',
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/api/, ''),
+            },
+        },
+    },
 })
