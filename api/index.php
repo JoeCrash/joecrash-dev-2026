@@ -27,6 +27,9 @@ if (!$action && str_starts_with($ct, 'application/json')) {
     $payload = json_decode($raw, true);
     if (json_last_error() === JSON_ERROR_NONE && isset($payload['action'])) {
         $action = $payload['action'];
+        if (!is_string($action)) {
+            json(['ok' => false, 'error' => 'Action must be a string'], 400);
+        }
     }
 }
 

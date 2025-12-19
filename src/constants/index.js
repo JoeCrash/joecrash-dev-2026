@@ -645,6 +645,11 @@ export const TERMINAL_CMD = {
         help: "Clear the terminal screen",
         function: "clear",
     },
+    exit: {
+        command: "exit",
+        help: "Close the terminal window",
+        function: "exit",
+    },
     helloUI: {
         command: "helloUI",
         help: "Prints a friendly UI message",

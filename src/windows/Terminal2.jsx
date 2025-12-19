@@ -2,28 +2,13 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import WindowWrapper from "#hoc/WindowWrapper.jsx";
 import { WindowControls } from "#components/index.js";
 import useTerminalStore from "#store/terminal.js";
+import useWindowStore from "#store/window.js";
 import { API_BASE, TERMINAL_CMD, TERMINAL_HEX_PREFIX, TERMINAL_HEX_SUFFIX } from "#constants/index.js";
 
 const PROMPT = "guest@joecrash-dev ~ %";
 
 function escapeRegExp(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function normalizeHex(h) {
-  // Accept 3, 4, 6, 8 hex digits (with optional alpha). Return with leading '#'.
-  const hex = h.toLowerCase();
-  if (hex.length === 3) {
-    return `#${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
-  }
-  if (hex.length === 4) {
-    // #RGBA -> #RRGGBBAA
-    return `#${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`;
-  }
-  if (hex.length === 6 || hex.length === 8) {
-    return `#${hex}`;
-  }
-  return null;
 }
 
 function parseColoredText(text, prefix, suffix) {
@@ -56,10 +41,27 @@ function parseColoredText(text, prefix, suffix) {
 
 const Terminal2 = () => {
   const { history, commands, addEntry, clearHistory } = useTerminalStore();
+  const { closeWindow } = useWindowStore();
   const [input, setInput] = useState("");
   const [historyIndex, setHistoryIndex] = useState(null); // null = not browsing, otherwise index into commandHistory
   const [draftInput, setDraftInput] = useState(""); // remembers the input before starting to browse history
   const outputRef = useRef(null);
+  const inputRef = useRef(null);
+
+  // Defer input focusing to the bubbling phase and next frame to avoid clobbering by window focus re-render
+  const focusInputAfterWindowFocus = () => {
+    // Use rAF to run after WindowWrapper's onPointerDownCapture triggers focusWindow and any ensuing render
+    requestAnimationFrame(() => {
+      if (inputRef.current) {
+        try {
+          inputRef.current.focus({ preventScroll: true });
+        } catch (_) {
+          // fallback for older browsers
+          inputRef.current.focus();
+        }
+      }
+    });
+  };
 
   useEffect(() => {
     if (outputRef.current) {
@@ -128,8 +130,13 @@ const Terminal2 = () => {
         setDraftInput("");
         setInput("");
         return;
+      case "exit":
+        // Close the terminal window immediately
+        closeWindow("terminal");
+        // Do not add any history entry; silently close
+        return;
       case "helloUI":
-        addEntry({ command: "helloUI", output: "Hello from the UI 👋", type: "success" });
+        addEntry({ command: "helloUI", output: "Hello from the ^#FEDF00^UI 👋", type: "success" });
         return;
       case "help": {
         // Build a two-color help list using hex prefix/suffix tokens (^#RRGGBB^)
@@ -203,8 +210,21 @@ const Terminal2 = () => {
         <h2>Terminal</h2>
         <WindowControls target="terminal" />
       </div>
-      <div className="bg-gray-900 text-white font-mono text-sm p-3 h-[420px] overflow-hidden">
-        <div ref={outputRef} className="h-[360px] overflow-y-auto pr-2 custom-scrollbar">
+      <div
+        className="bg-gray-900 text-white font-mono text-sm p-3 h-[420px] overflow-hidden"
+        onPointerDown={() => {
+          // Focus after window focus (bubbling), next frame
+          focusInputAfterWindowFocus();
+        }}
+      >
+        <div
+          ref={outputRef}
+          className="h-[360px] overflow-y-auto pr-2 custom-scrollbar"
+          onPointerDown={() => {
+            // Also focus when clicking inside the scrollable area, after window focus
+            focusInputAfterWindowFocus();
+          }}
+        >
           {history.length === 0 && (
             <div className="text-gray-400 mb-2">
               Type "helloUI", "helloAPI", or "help". Use "clear" to clear the screen.
@@ -234,6 +254,7 @@ const Terminal2 = () => {
         <form onSubmit={onSubmit} className="flex items-center gap-2 mt-2">
           <span className="text-green-500">{PROMPT}</span>
           <input
+            ref={inputRef}
             autoFocus
             value={input}
             onChange={(e) => {
