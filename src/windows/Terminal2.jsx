@@ -157,7 +157,12 @@ const Terminal2 = () => {
     try {
       const url = `${API_BASE}${endpoint}`;
       const res = await fetch(url, { headers: { Accept: "application/json" } });
-      const data = await res.json();
+      let data;
+      try {
+        data = await res.json();
+      } catch (parseError) {
+        throw new Error(`Invalid JSON response: ${parseError.message}`);
+      }
       if (!res.ok || data.ok === false) {
         throw new Error(data.error || `HTTP ${res.status}`);
       }
