@@ -84,7 +84,7 @@ const Terminal2 = () => {
     return result; // most recent first
   }, [commands]);
 
-  const commandRegistry = useMemo(() => TERMINAL_CMD, []);
+  const commandRegistry = TERMINAL_CMD;
 
   const handleKeyDown = (e) => {
     if (e.key === "ArrowUp" || e.key === "ArrowDown") {
@@ -121,7 +121,7 @@ const Terminal2 = () => {
     }
   };
 
-  const runFrontend = async (key) => {
+  const runFrontend = (key) => {
     switch (key) {
       case "clear":
         clearHistory();
@@ -142,8 +142,9 @@ const Terminal2 = () => {
         // Build a two-color help list using hex prefix/suffix tokens (^#RRGGBB^)
         const primary = "#65eeab"; // command color (greenish)
         const secondary = "#b3b3b3"; // description color (light gray)
+        const tertiary = "#abcdef"; // description color (light gray)
         const lines = Object.values(TERMINAL_CMD)
-          .map((c) => `${TERMINAL_HEX_PREFIX}${primary}${TERMINAL_HEX_SUFFIX}${c.command} ${TERMINAL_HEX_PREFIX}${secondary}${TERMINAL_HEX_SUFFIX}${c.help || ""}`)
+          .map((c) => `${TERMINAL_HEX_PREFIX}${primary}${TERMINAL_HEX_SUFFIX}${c.command} ${TERMINAL_HEX_PREFIX}${tertiary}${TERMINAL_HEX_SUFFIX}=> ${TERMINAL_HEX_PREFIX}${secondary}${TERMINAL_HEX_SUFFIX}${c.help || ""}`)
           .join("\n");
         addEntry({ command: "help", output: lines, type: "info" });
         return;

@@ -251,7 +251,7 @@ body {
     }
 
     #terminal {
-        @apply w-xl absolute top-32 left-1/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
+        @apply w-3xl absolute top-32 left-1/12 shadow-2xl drop-shadow-2xl rounded-3xl overflow-hidden;
 
         .techstack {
             @apply text-sm font-roboto p-5 bg-gray-900 text-white;
